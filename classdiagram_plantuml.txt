@@ -4,7 +4,6 @@ To view diagram, install PlantUML plugin for IntelliJ/VSCode
 
 
 @startuml
-
 package Database <<Database>>{
     entity Landmark_Table {
         landmark_ID
@@ -212,7 +211,6 @@ package Controllers {
     AuthController ..> SecurityConfig
 
 }
-
 
 
 
