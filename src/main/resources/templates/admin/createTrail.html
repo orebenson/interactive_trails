@@ -2,9 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <link th:replace="~{/fragments/header :: bootstrap-css}"/>
+    <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <title>VZTA Trails</title>
 </head>
 <body>
+<div class="main-container">
+    <header th:replace="~{/fragments/header :: navbar}"></header>
+    <div class="page-container">
 
+        <form action="#" class="container mt-5">
+
+            <div class="mb-3">
+                <label for="trailTown" class="form-label"><h2>Choose Trail Town:</h2></label>
+                <select id="trailTown" class="form-select">
+                    <option value="town1">Town 1</option>
+                    <option value="town2">Town 2</option>
+                    <option value="town2">Town 3</option>
+                    <option value="town2">Town 4</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="trailName" class="form-label"><h2>Choose Trail Name:</h2></label>
+                <input type="text" id="trailName" class="form-control" required>
+            </div>
+
+            <h2>Enter 15 Checkpoints:</h2>
+
+            <div th:each="index : ${#numbers.sequence(0, 14)}" class="mb-4">
+                <div class="border p-3">
+
+                    <h3 th:text="'Checkpoint ' + ${index + 1}"></h3>
+
+                    <div class="mb-3">
+                        <label th:for="${'checkpointName_' + index}" class="form-label">Name:</label>
+                        <input type="text" th:id="${'checkpointName_' + index}" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label th:for="${'checkpointLocation_' + index}" class="form-label">Location:</label>
+                        <input type="text" th:id="${'checkpointLocation_' + index}" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label th:for="${'checkpointDescription_' + index}" class="form-label">Description:</label>
+                        <textarea th:id="${'checkpointDescription_' + index}" class="form-control" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label th:for="${'checkpointPhoto_' + index}" class="form-label">Photograph (File):</label>
+                        <input type="file" accept="image/*" th:id="${'checkpointPhoto_' + index}" class="form-control" />
+                    </div>
+
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br><br>
+        </form>
+    </div>
+</div>
 </body>
 </html>

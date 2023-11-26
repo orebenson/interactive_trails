@@ -194,6 +194,7 @@ package Controllers {
 
     class TrailManagementController {
         @POST /trails/add (add new trail, admin only)
+        @GET /trails/add (add new trail, admin only)
         @POST /trails/{id}/delete (delete a trail, admin only)
     }
 
