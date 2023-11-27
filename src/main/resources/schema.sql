@@ -7,16 +7,21 @@ drop table if exists roles_table;
 drop table if exists users_roles;
 
 create table if not exists user_table (
-    id       bigint auto_increment primary key,
     username varchar(50)  not null primary key,
-    password varchar(500) not null,
+    password varchar(500) not null
 ) engine = InnoDB;
 
 create table if not exists user_checkpoints (
+    username        VARCHAR(50) not null,
+    checkpoint_id   int(11) not null
 
 ) engine = InnoDB;
 
 create table if not exists checkpoint_table (
+    checkpoint_id   int(11)     PRIMARY KEY,
+    trail_id        bigint      NOT NULL,
+    name            varchar(45) NOT NULL
+
 
 ) engine = InnoDB;
 
