@@ -5,6 +5,7 @@
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
     <link rel="stylesheet" href="../../static/stylesheets/trails.css">
+
     <title>VZTA Trails</title>
 </head>
 
@@ -16,21 +17,22 @@
 
         <main>
             <h1>Trails</h1>
-            <a th:href="@{/}"></a>
             <p> You can view all the available trails for your town here.</p>
 
             <section>
                 <div>
-                    <div class="trail-container">
-                        <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">
-                            <img class="trail-image" src="../../static/images/trail1Placeholder.jpg"
-                                 alt="picture outlining the trail">
-                        </a>
+                    <div class="trail-container" th:each="trail: ${trails}">
+<!--                        <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">-->
+<!--                            <img class="trail-image" src="../../static/images/trail1Placeholder.jpg"-->
+<!--                                 alt="picture outlining the trail">-->
+<!--                        </a>-->
                         <section class="trail-text">
-                            <h3 class="trailName">Trail Name: </h3>
-                            <div class="trailDescription">Trail description:</div>
-                            <div class="firstCheckpoint">First Checkpoint:</div>
-                            <small href="trail1" class="details"> View more details</small>
+                            <h3 class="name" th:text="${trail.name}">Trail Name: </h3>
+                            <div class="trailId" th:text="${trail.id}"> Trail Id: </div>
+                            <div class="location" th:text="${trail.location}">Trail Location:</div>
+<!--                            <div class="trailDescription">Trail description:</div>-->
+<!--                            <div class="firstCheckpoint">First Checkpoint:</div>-->
+                            <small th:href="@{/trails/{id} (id=${trail.id})}" th:text="more" class="details"> View more details</small>
                         </section>
                     </div>
                 </div>
