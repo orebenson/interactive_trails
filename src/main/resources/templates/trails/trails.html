@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="~{/fragments/header :: bootstrap-css}"/>
+    <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <link rel="stylesheet" href="../../static/stylesheets/trails.css">
+    <title>VZTA Trails</title>
+</head>
+
+
+<body>
+<div class="main-container">
+    <header th:replace="~{/fragments/header :: navbar}"></header>
+    <div class="page-container">
+
+        <main>
+            <h1>Trails</h1>
+            <a th:href="@{/}"></a>
+            <p> You can view all the available trails for your town here.</p>
+
+            <section>
+                <div>
+                    <div class="trail-container">
+                        <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">
+                            <img class="trail-image" src="../../static/images/trail1Placeholder.jpg"
+                                 alt="picture outlining the trail">
+                        </a>
+                        <section class="trail-text">
+                            <h3 class="trailName">Trail Name: </h3>
+                            <div class="trailDescription">Trail description:</div>
+                            <div class="firstCheckpoint">First Checkpoint:</div>
+                            <small href="trail1" class="details"> View more details</small>
+                        </section>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+</div>
+</body>
+</html>
