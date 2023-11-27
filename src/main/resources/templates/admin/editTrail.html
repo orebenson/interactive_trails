@@ -30,6 +30,11 @@
         <input th:field="*{name}" type="text" id="trailName" class="form-control" required>
       </div>
 
+      <div class="mb-3">
+        <label for="trailDescription" class="form-label"><h2>Description:</h2></label>
+        <textarea th:field="*{description}" type="text" id="trailDescription" class="form-control" required></textarea>
+      </div>
+
       <h2>Enter 15 Checkpoints:</h2>
 
       <div th:each="index : ${#numbers.sequence(0, 14)}" class="mb-4">

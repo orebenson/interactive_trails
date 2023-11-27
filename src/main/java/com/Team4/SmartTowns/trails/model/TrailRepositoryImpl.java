@@ -24,6 +24,7 @@ public class TrailRepositoryImpl implements TrailRepository {
             Trail trail = new Trail();
             trail.setName(resultSet.getString("name"));
             trail.setLocation(resultSet.getString("location"));
+            trail.setDescription(resultSet.getString("description"));
             trail.setCheckpoints(checkpointRepository.findCheckpointsByTrailId(resultSet.getLong("trail_id")));
             return trail;
         };
@@ -47,16 +48,16 @@ public class TrailRepositoryImpl implements TrailRepository {
     }
 
     private Long insertTrail(Trail trail) {
-        String sql = "INSERT INTO trail_table (name, location) VALUES (?, ?) RETURNING trail_id";
-        Long trailId = jdbc.queryForObject(sql, Long.class, trail.getName(), trail.getLocation());
+        String sql = "INSERT INTO trail_table (name, location, description) VALUES (?, ?, ?) RETURNING trail_id";
+        Long trailId = jdbc.queryForObject(sql, Long.class, trail.getName(), trail.getLocation(), trail.getDescription());
         trail.setId(trailId);
         saveCheckpoints(trail);
         return trailId;
     }
 
     private Long updateTrail(Trail trail) {
-        String sql = "UPDATE trail_table SET name = ?, location = ? WHERE trail_id = ?";
-        jdbc.update(sql, trail.getName(), trail.getLocation(), trail.getId());
+        String sql = "UPDATE trail_table SET name = ?, location = ?, description = ?, WHERE trail_id = ?";
+        jdbc.update(sql, trail.getName(), trail.getLocation(), trail.getDescription(), trail.getId());
         saveCheckpoints(trail);
         return trail.getId();
     }

@@ -16,11 +16,14 @@ public class Trail {
     private String location;
     private List<Checkpoint> checkpoints;
 
+    private String description;
+
     public Trail(){
         this.id = null;
         this.name = "";
         this.location = "";
         this.checkpoints = new ArrayList<Checkpoint>();
+        this.description = "";
         for(int i = 0; i < 15; i++) {
             Checkpoint checkpoint = new Checkpoint();
             checkpoint.setTrail(this);
