@@ -199,6 +199,7 @@ package Services {
     interface ProfileService {
         + getUser(Long user_id) : User, User.medals, User.checkpoints
         + addUser(String username, String password)
+        + getUserId(String username) : Long id
     }
 
     class ProfileServiceImpl {
@@ -206,6 +207,7 @@ package Services {
         --
         + getUser(Long user_id) : User, User.medals, User.checkpoints
         + addUser(String username, String password)
+        + getUserId(String username) : Long id
     }
 
     ProfileServiceImpl --|> ProfileService
