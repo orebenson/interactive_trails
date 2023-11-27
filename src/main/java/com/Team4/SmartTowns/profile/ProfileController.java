@@ -1,21 +1,16 @@
-package com.Team4.SmartTowns;
+package com.Team4.SmartTowns.profile;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
-
-public class profilePage {
+public class ProfileController {
     @GetMapping(value = {"/profile"})
-    public ModelAndView userName(ModelAndView modelAndView){
-
-       modelAndView.setViewName("profilePage.html");
+    public ModelAndView userName(){
+        ModelAndView modelAndView = new ModelAndView("/profile/profilePage");
+//       modelAndView.setViewName("profilePage.html");
 
        //dummy data for the profile page fields.
        modelAndView.addObject("name", "John");
@@ -32,9 +27,4 @@ public class profilePage {
     return modelAndView;
     }
 
-//    public ModelAndView showProfilePage(){
-//
-//        ModelAndView modelAndView = new ModelAndView("/profiles/{profileID}");
-//        return modelAndView;
-//    }
 }
