@@ -1,0 +1,220 @@
+Below is a uml diagram spec, using PlantUML.
+To view diagram, install PlantUML plugin for IntelliJ/VSCode
+
+
+
+@startuml
+
+package Database <<Database>>{
+    entity Landmark_Table {
+        landmark_ID
+        --
+        co-ordinates
+    }
+
+    entity Checkpoint_Table {
+        checkpoint_ID
+        --
+        trail_ID
+        landmark_ID
+    }
+
+    entity User_Table {
+        user_ID
+        --
+        username
+        password
+    }
+
+    entity User_Checkpoints {
+        user_ID
+        checkpoint_ID
+    }
+
+    entity Trail_Table {
+        trail_ID
+        --
+        name
+        location
+    }
+
+    entity Trail_Checkpoint {
+        trail_ID
+        checkpoint_ID
+    }
+
+    Trail_Table ||..|| Trail_Checkpoint
+    Checkpoint_Table ||..|| Trail_Checkpoint
+    Checkpoint_Table ||..|| Landmark_Table
+
+    Checkpoint_Table }o..|| User_Checkpoints
+    User_Table }o..|| User_Checkpoints
+}
+
+
+package Models {
+
+    ''''''''''''' Checkpoint Models
+
+    class Checkpoint {
+        - String landmark(??)
+        - Array[2] coordinates
+    }
+
+    interface CheckpointRepository {
+        + findCheckpointById(Long id) : Checkpoint
+        + findCheckpointsByUserId(Long user_id) : List<Checkpoint>
+        + saveCheckpoint(Checkpoint checkpoint) : Long id
+        + addCheckpointToUser(Long checkpoint_id, Long user_id)
+    }
+
+    class CheckpointRepositoryImpl {
+        - JdbcTemplate jdbc
+        - RowMapper<Checkpoint> checkpointMapper
+        --
+        + CheckpointRepositoryImpl(JdbcTemplate aJdbc)
+        - setCheckpointMapper()
+        + findCheckpointById(Long id) : Checkpoint
+        + findCheckpointsByUserId(Long user_id) : List<Checkpoint>
+        + saveCheckpoint(Checkpoint checkpoint) : Long id
+        + addCheckpointToUser(Long checkpoint_id, Long user_id)
+        - insertCheckpoint(Checkpoint checkpoint) : Long id
+        - updateCheckpoint(Checkpoint checkpoint) : Long id
+    }
+
+    CheckpointRepositoryImpl --|> CheckpointRepository
+    CheckpointRepositoryImpl --> Checkpoint
+
+    CheckpointRepositoryImpl ..> Checkpoint_Table
+    CheckpointRepositoryImpl ..> User_Checkpoints
+
+    ''''''''''''' Trail Models
+
+    class Trail {
+        - String name
+        - String location
+        - List<Checkpoint> checkpoints
+    }
+
+    interface TrailRepository {
+        + findTrailById(Long id) : Trail
+        + saveTrail(Trail trail)
+    }
+
+    class TrailRepositoryImpl {
+        - JdbcTemplate jdbc
+        - RowMapper<Trail> trailMapper
+        --
+        + TrailRepositoryImpl(JdbcTemplate aJdbc)
+        - setTrailMapper()
+        + findTrailById(Long id) : Trail
+        + saveTrail(Trail trail)
+        - updateTrail(Trail trail)
+        - insertTrail(Trail trail)
+    }
+
+    TrailRepositoryImpl --|> TrailRepository
+    TrailRepositoryImpl --> Trail
+
+    TrailRepositoryImpl ..> Trail_Table
+    TrailRepositoryImpl ..> Trail_Checkpoint
+
+    Trail *- Checkpoint
+
+
+    ''''''''''''' Notes
+    note "QR codes can be mapped to checkpoint IDs, so when one is scanned,\n it gets the checkpoint by ID, and adds it to the user_checkpoints table " as n2
+    note "to create trail:\n save trail name to trail table and get trail_ID\n for each checkpoint in the trail:\n   save checkpoint to checkpoint table and get checkpoint_ID\n   add trail_ID and checkpoint_ID to Trail_Checkpoint" as n1
+
+}
+
+package Services {
+    ''''''''''''' Trail
+
+    interface TrailService {
+        + createTrail(Trail trail)
+        + getTrails() : List<Trail>
+        + getTrailById(Long id) : Trail
+    }
+
+    class TrailServiceImpl {
+        - TrailRepository trailRepository
+        - CheckpointRepository checkpointRepository
+        --
+        + createTrail(Trail trail)
+        + getTrails() : List<Trail>
+        + getTrailById(Long id) : Trail
+    }
+
+    TrailServiceImpl --|> TrailService
+    TrailServiceImpl *-- TrailRepository
+    TrailServiceImpl *-- CheckpointRepository
+
+
+    ''''''''''''' Checkpoint
+
+    interface CheckpointService {
+        + addCheckpointToUser(checkpoint_id, user_id)
+        + getCheckpointsForUser(user_id) : List<Checkpoint>
+    }
+
+    class CheckpointServiceImpl {
+        - CheckpointRepository checkpointRepository
+        --
+        + addCheckpointToUser(checkpoint_id, user_id)
+        + getCheckpointsForUser(user_id) : List<Checkpoint>
+    }
+
+    CheckpointServiceImpl --|> CheckpointService
+    CheckpointServiceImpl *-- CheckpointRepository
+}
+
+
+package Security {
+    class SecurityConfig {
+        - DataSource dataSource
+        + String[] ENDPOINTS_WHITELIST
+        --
+        + passwordEncoder() : PasswordEncoder
+        + securityFilterChain(HttpSecurity http) : SecurityFilterChain
+        - userDetailsService : UserDetailsService
+
+    }
+}
+
+
+package Controllers {
+    ''''''''''' Trails
+
+    class TrailController {
+        @GET /trails (get all trails)
+        @GET /trails/{id} (get all trails, get all checkpoints for user)
+        @GET /trails/{id}/leaderboard (calculate highest users for each trail?)
+        @POST /scan (map qr code to checkpoint_id, add checkpoint to user_id from session)
+    }
+
+    class TrailManagementController {
+        @POST /trails/add (add new trail, admin only)
+        @POST /trails/{id}/delete (delete a trail, admin only)
+    }
+
+    TrailController ..> TrailService
+    TrailController ..> CheckpointService
+    TrailManagementController ..> TrailService
+
+    ''''''''''' Security
+
+    class AuthController {
+        @GET /login (get login page, post handled by security)
+        @GET /logout (end session)
+    }
+
+    AuthController ..> SecurityConfig
+
+}
+
+
+
+
+
+@enduml
