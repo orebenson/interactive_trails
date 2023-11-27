@@ -14,10 +14,16 @@ import java.util.List;
 public class profilePage {
     @GetMapping(value = {"/profile"})
     public ModelAndView userName(ModelAndView modelAndView){
+
        modelAndView.setViewName("profilePage.html");
+
+       //dummy data for the profile page fields.
        modelAndView.addObject("name", "John");
         modelAndView.addObject("town", "Cardiff Town");
-        modelAndView.addObject("numberOfTrails", 2);
+        modelAndView.addObject("unlockedTrails", 2);
+        modelAndView.addObject("completedTrails", 4);
+
+        modelAndView.addObject("lockedTrails", 2);
         modelAndView.addObject("about", "I love trails\n" +
                 "\n" +
                 "Embarking on a Journey\n" +
