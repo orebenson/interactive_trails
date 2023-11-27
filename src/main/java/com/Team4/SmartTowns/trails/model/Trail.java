@@ -1,6 +1,6 @@
-package com.Team4.SmartTowns.trails;
+package com.Team4.SmartTowns.trails.model;
 
-import com.Team4.SmartTowns.checkpoints.Checkpoint;
+import com.Team4.SmartTowns.checkpoints.model.Checkpoint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,11 +10,14 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class Trail {
+
+    private Long id;
     private String name;
     private String location;
     private List<Checkpoint> checkpoints;
 
     public Trail(){
+        this.id = null;
         this.name = "";
         this.location = "";
         this.checkpoints = new ArrayList<Checkpoint>();

@@ -6,6 +6,22 @@
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
     <title>VZTA Trails</title>
+
+    <script>
+        function showCheckpoint(index) {
+            // Hide all checkpoints
+            var checkpoints = document.querySelectorAll('.checkpoint-container');
+            checkpoints.forEach(function (checkpoint) {
+                checkpoint.style.display = 'none';
+            });
+
+            // Show the selected checkpoint
+            var selectedCheckpoint = document.getElementById('checkpointContainer_' + index);
+            if (selectedCheckpoint) {
+                selectedCheckpoint.style.display = 'block';
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="main-container">
@@ -19,8 +35,8 @@
                 <select th:field="*{location}" id="trailTown" class="form-select">
                     <option value="town1">Town 1</option>
                     <option value="town2">Town 2</option>
-                    <option value="town2">Town 3</option>
-                    <option value="town2">Town 4</option>
+                    <option value="town3">Town 3</option>
+                    <option value="town4">Town 4</option>
                 </select>
             </div>
 
@@ -29,35 +45,49 @@
                 <input th:field="*{name}" type="text" id="trailName" class="form-control" required>
             </div>
 
+            <div class="mb-3">
+                <label for="selectCheckpoint" class="form-label"><h2>Select Checkpoint to Edit:</h2></label>
+                <select onchange="showCheckpoint(this.value)" id="selectCheckpoint" class="form-select">
+                    <option value="-1">Select a Checkpoint</option>
+                    <th:block th:each="index : ${#numbers.sequence(0, 14)}">
+                        <option th:value="${index}" th:text="'Checkpoint ' + ${index + 1}"></option>
+                    </th:block>
+                </select>
+            </div>
+
             <h2>Enter 15 Checkpoints:</h2>
 
-            <div th:each="index : ${#numbers.sequence(0, 14)}" class="mb-4">
-                <div class="border p-3">
+            <div th:each="index : ${#numbers.sequence(0, 14)}" class="mb-4 checkpoint-container" style="display: none;"
+                 th:id="${'checkpointContainer_' + index}">
 
-                    <h3 th:text="'Checkpoint ' + ${index + 1}"></h3>
+                <h3 th:text="'Checkpoint ' + ${index + 1}"></h3>
 
-                    <div class="mb-3">
-                        <label th:for="${'checkpointName_' + index}" class="form-label">Name:</label>
-                        <input th:field="*{checkpoints[__${index}__].name}" type="text" th:id="${'checkpointName_' + index}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label th:for="${'X-Coordinate_' + index}" class="form-label">X-Coordinate:</label>
-                        <input th:field="*{checkpoints[__${index}__].coordinates[0]}" type="text" th:id="${'X-Coordinate_' + index}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label th:for="${'Y-Coordinate_' + index}" class="form-label">Y-Coordinate:</label>
-                        <input th:field="*{checkpoints[__${index}__].coordinates[1]}" type="text" th:id="${'Y-Coordinate_' + index}" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label th:for="${'checkpointDescription_' + index}" class="form-label">Description:</label>
-                        <textarea th:field="*{checkpoints[__${index}__].description}" th:id="${'checkpointDescription_' + index}" class="form-control"></textarea>
-                    </div>
-
+                <div class="mb-3">
+                    <label th:for="${'checkpointName_' + index}" class="form-label">Name:</label>
+                    <input th:field="*{checkpoints[__${index}__].name}" type="text" th:id="${'checkpointName_' + index}"
+                           class="form-control">
                 </div>
+
+                <div class="mb-3">
+                    <label th:for="${'X-Coordinate_' + index}" class="form-label">X-Coordinate:</label>
+                    <input th:field="*{checkpoints[__${index}__].coordinates[0]}" type="text"
+                           th:id="${'X-Coordinate_' + index}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label th:for="${'Y-Coordinate_' + index}" class="form-label">Y-Coordinate:</label>
+                    <input th:field="*{checkpoints[__${index}__].coordinates[1]}" type="text"
+                           th:id="${'Y-Coordinate_' + index}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label th:for="${'checkpointDescription_' + index}" class="form-label">Description:</label>
+                    <textarea th:field="*{checkpoints[__${index}__].description}"
+                              th:id="${'checkpointDescription_' + index}" class="form-control"></textarea>
+                </div>
+
             </div>
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
             <br><br>
