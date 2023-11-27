@@ -20,14 +20,13 @@ package Database <<Database>>{
     }
 
     entity User_Table {
-        user_ID
-        --
         username
+        --
         password
     }
 
     entity User_Checkpoints {
-        user_ID
+        username
         checkpoint_ID
     }
 
@@ -43,12 +42,26 @@ package Database <<Database>>{
         checkpoint_ID
     }
 
+    entity Roles {
+        role_ID
+        --
+        name
+    }
+
+    entity Users_Roles {
+        role_ID
+        username
+    }
+
     Trail_Table ||..|| Trail_Checkpoint
     Checkpoint_Table ||..|| Trail_Checkpoint
     Checkpoint_Table ||..|| Landmark_Table
 
     Checkpoint_Table }o..|| User_Checkpoints
     User_Table }o..|| User_Checkpoints
+
+    Roles ||--o{ Users_Roles
+    User_Table ||--o{ Users_Roles
 }
 
 
