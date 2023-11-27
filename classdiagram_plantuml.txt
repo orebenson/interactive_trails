@@ -5,17 +5,14 @@ To view diagram, install PlantUML plugin for IntelliJ/VSCode
 
 @startuml
 package Database <<Database>>{
-    entity Landmark_Table {
-        landmark_ID
-        --
-        co-ordinates
-    }
 
     entity Checkpoint_Table {
         checkpoint_ID
         --
         trail_ID
         landmark_ID
+        latitude
+        longitude
     }
 
     entity User_Table {
@@ -42,12 +39,12 @@ package Database <<Database>>{
         checkpoint_ID
     }
 
-    Trail_Table ||..|| Trail_Checkpoint
-    Checkpoint_Table ||..|| Trail_Checkpoint
-    Checkpoint_Table ||..|| Landmark_Table
+    Trail_Table ||--|| Trail_Checkpoint
+    Checkpoint_Table ||--|| Trail_Checkpoint
 
-    Checkpoint_Table }o..|| User_Checkpoints
-    User_Table }o..|| User_Checkpoints
+    Checkpoint_Table }o--|| User_Checkpoints
+    User_Table }o--|| User_Checkpoints
+
 }
 
 
@@ -120,10 +117,40 @@ package Models {
 
     Trail *- Checkpoint
 
+    ''''''''''''''' Profile
+
+    class Profile {
+        - String name
+        - List<Checkpoint>
+    }
+
+    interface ProfileRepository {
+        + saveUser(String username, String password)
+        + findProfileById(Long user_id) : user, checkpoints
+        + getProfileId(String username) : Long id
+    }
+
+    class ProfileRepositoryImpl {
+        - JdbcTemplate jdbc
+        - RowMapper<Profile> profileMapper
+        --
+        + ProfileRepositoryImpl(JdbcTemplate aJdbc)
+        + saveUser(String username, String password)
+        - setProfileMapper()
+        + findProfileById(Long user_id) : user, checkpoints
+        + getProfileId(String username) : Long id
+    }
+
+    ProfileRepositoryImpl --|> ProfileRepository
+    ProfileRepositoryImpl ..> User_Table
+    ProfileRepositoryImpl ..> User_Checkpoints
+    ProfileRepositoryImpl --> Profile
+
 
     ''''''''''''' Notes
     note "QR codes can be mapped to checkpoint IDs, so when one is scanned,\n it gets the checkpoint by ID, and adds it to the user_checkpoints table " as n2
     note "to create trail:\n save trail name to trail table and get trail_ID\n for each checkpoint in the trail:\n   save checkpoint to checkpoint table and get checkpoint_ID\n   add trail_ID and checkpoint_ID to Trail_Checkpoint" as n1
+
 
 }
 
@@ -166,6 +193,23 @@ package Services {
 
     CheckpointServiceImpl --|> CheckpointService
     CheckpointServiceImpl *-- CheckpointRepository
+
+    '''''''''''''''' Profile
+
+    interface ProfileService {
+        + getUser(Long user_id) : User, User.medals, User.checkpoints
+        + addUser(String username, String password)
+    }
+
+    class ProfileServiceImpl {
+        - ProfileRepository profileRepository
+        --
+        + getUser(Long user_id) : User, User.medals, User.checkpoints
+        + addUser(String username, String password)
+    }
+
+    ProfileServiceImpl --|> ProfileService
+    ProfileServiceImpl *-- ProfileRepository
 }
 
 
@@ -196,20 +240,33 @@ package Controllers {
         @POST /trails/add (add new trail, admin only)
         @GET /trails/add (add new trail, admin only)
         @POST /trails/{id}/delete (delete a trail, admin only)
+        @GET /trails/{id}/edit (admin only)
+        @POST /trails/{id}/edit (admin only)
     }
 
     TrailController ..> TrailService
     TrailController ..> CheckpointService
     TrailManagementController ..> TrailService
 
+    ''''''''''' Profile
+
+    class ProfileController {
+        @GET /profile (get user medals, user checkpoints)
+    }
+
+    ProfileController ..> ProfileService
+
     ''''''''''' Security
 
     class AuthController {
         @GET /login (get login page, post handled by security)
+        @GET /signup
+        @POST /signup
         @GET /logout (end session)
     }
 
     AuthController ..> SecurityConfig
+    AuthController ..> ProfileService
 
 }
 
