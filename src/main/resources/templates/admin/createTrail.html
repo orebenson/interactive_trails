@@ -46,6 +46,11 @@
             </div>
 
             <div class="mb-3">
+                <label for="trailDescription" class="form-label"><h2>Description:</h2></label>
+                <textarea th:field="*{description}" type="text" id="trailDescription" class="form-control" required></textarea>
+            </div>
+
+            <div class="mb-3">
                 <label for="selectCheckpoint" class="form-label"><h2>Select Checkpoint to Edit:</h2></label>
                 <select onchange="showCheckpoint(this.value)" id="selectCheckpoint" class="form-select">
                     <option value="-1">Select a Checkpoint</option>
