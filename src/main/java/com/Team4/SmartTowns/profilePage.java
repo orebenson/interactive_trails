@@ -22,7 +22,7 @@ public class profilePage {
                 "\n" +
                 "Embarking on a Journey\n" +
                 "\n" +
-                "Cool Trail!")
+                "Cool Trail!");
     return modelAndView;
     }
 
