@@ -12,11 +12,11 @@
     <header th:replace="~{/fragments/header :: navbar}"></header>
     <div class="page-container">
 
-        <form action="#" class="container mt-5">
+        <form class="container mt-5" th:method="post" th:object="${trail}" th:action="@{/trails/add}">
 
             <div class="mb-3">
                 <label for="trailTown" class="form-label"><h2>Choose Trail Town:</h2></label>
-                <select id="trailTown" class="form-select">
+                <select th:field="*{location}" id="trailTown" class="form-select">
                     <option value="town1">Town 1</option>
                     <option value="town2">Town 2</option>
                     <option value="town2">Town 3</option>
@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <label for="trailName" class="form-label"><h2>Choose Trail Name:</h2></label>
-                <input type="text" id="trailName" class="form-control" required>
+                <input th:field="*{name}" type="text" id="trailName" class="form-control" required>
             </div>
 
             <h2>Enter 15 Checkpoints:</h2>
@@ -38,22 +38,22 @@
 
                     <div class="mb-3">
                         <label th:for="${'checkpointName_' + index}" class="form-label">Name:</label>
-                        <input type="text" th:id="${'checkpointName_' + index}" class="form-control" required>
+                        <input th:field="*{checkpoints[__${index}__].name}" type="text" th:id="${'checkpointName_' + index}" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label th:for="${'checkpointLocation_' + index}" class="form-label">Location:</label>
-                        <input type="text" th:id="${'checkpointLocation_' + index}" class="form-control" required>
+                        <label th:for="${'X-Coordinate_' + index}" class="form-label">X-Coordinate:</label>
+                        <input th:field="*{checkpoints[__${index}__].coordinates[0]}" type="text" th:id="${'X-Coordinate_' + index}" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label th:for="${'Y-Coordinate_' + index}" class="form-label">Y-Coordinate:</label>
+                        <input th:field="*{checkpoints[__${index}__].coordinates[1]}" type="text" th:id="${'Y-Coordinate_' + index}" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label th:for="${'checkpointDescription_' + index}" class="form-label">Description:</label>
-                        <textarea th:id="${'checkpointDescription_' + index}" class="form-control" required></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label th:for="${'checkpointPhoto_' + index}" class="form-label">Photograph (File):</label>
-                        <input type="file" accept="image/*" th:id="${'checkpointPhoto_' + index}" class="form-control" />
+                        <textarea th:field="*{checkpoints[__${index}__].description}" th:id="${'checkpointDescription_' + index}" class="form-control"></textarea>
                     </div>
 
                 </div>
