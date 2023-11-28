@@ -64,7 +64,7 @@ body {
     position: fixed;
     top: 0;
     background-color: white;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0.3rem;
     padding-inline: 1rem;
 }
@@ -104,6 +104,19 @@ body {
     color: var(--highlight-colour);
 }
 
+.nav-button {
+    text-decoration: none;
+    color: var(--background-colour);
+    padding-inline: 0.5rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: fit-content;
+}
+
+.nav-button:hover {
+    color: var(--highlight-colour);
+}
+
 h1, h2, h3, p {
     margin: 0;
     padding: 0;
@@ -120,3 +133,5 @@ h2 {
 h3 {
     font-size: 1.3rem;
 }
+
+

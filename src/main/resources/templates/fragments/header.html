@@ -22,20 +22,25 @@
         <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
             <a th:href="@{/trails/add}">Add Trail</a>
         </li>
-
+    </ul>
+    <ul>
+        <li th:if="${#authorization.expression('isAuthenticated()')}">
+            Welcome, <span th:text="${#authorization.getAuthentication().getName()}"></span>
+        </li>
         <li th:if="${#authorization.expression('isAuthenticated()')}">
             <form th:method="post" th:action="@{/logout}">
-                <button type="submit">Logout</button>
+                <button class="nav-button" type="submit">Logout</button>
             </form>
         </li>
         <li th:unless="${#authorization.expression('isAuthenticated()')}">
-<!--            <a th:href="@{/login}">Login</a>-->
             <form th:method="get" th:action="@{/login}">
-                <button type="submit">Login</button>
+                <button class="nav-button" type="submit">Login</button>
             </form>
         </li>
 
     </ul>
+
+
 </header>
 </body>
 
