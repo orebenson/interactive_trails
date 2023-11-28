@@ -27,11 +27,11 @@ public class ProfileController {
     return modelAndView;
     }
 
-
-    @GetMapping("/profile") {
-        public ModelAndView getProfile(Principal principal) {
-            String loggedInUser = principal.gerName()
-        }
-    }
+//
+//    @GetMapping("/profile") {
+//        public ModelAndView getProfile(Principal principal) {
+//            String loggedInUser = principal.getName()
+//        }
+//    }
 
 }

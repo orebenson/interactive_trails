@@ -18,9 +18,9 @@ public class Profile {
     }
 
 
-    public boolean  verifyLogin() {
-        //login verification logic
-    }
+//    public boolean  verifyLogin() {
+//        //login verification logic
+//    }
 
     public String getUsername() {
         return username;
