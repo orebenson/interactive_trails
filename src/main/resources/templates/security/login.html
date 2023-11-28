@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link th:replace="~{/fragments/header :: bootstrap-css}"/>
+  <link th:replace="~{/fragments/header :: mainstyles}"/>
+  <title>VZTA Trails</title>
+</head>
+<body>
+<div class="main-container">
+  <header th:replace="~{/fragments/header :: navbar}"></header>
+  <div class="page-container">
+
+    <!--    page content goes here-->
+    <form method="post" th:action="@{/login}">
+      <div>
+        <label> User Name: <input name="username" type="text"/></label>
+      </div>
+      <div>
+        <label> Password: <input name="password" type="password"/></label>
+      </div>
+      <div><input type="submit" value="Sign In"/></div>
+    </form>
+
+
+  </div>
+</div>
+</body>
+</html>
