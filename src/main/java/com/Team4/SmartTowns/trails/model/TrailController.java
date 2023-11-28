@@ -3,6 +3,7 @@ package com.Team4.SmartTowns.trails.model;
 import com.Team4.SmartTowns.checkpoints.model.Checkpoint;
 import com.Team4.SmartTowns.checkpoints.service.CheckpointService;
 import com.Team4.SmartTowns.trails.service.TrailService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class TrailController {
     }
 
     @GetMapping("/trails/{id}")
-    public ModelAndView getDetails(@PathVariable Long id){
+    public ModelAndView getDetails(@PathVariable Long id, HttpSession session){
         ModelAndView mvc = new ModelAndView("/trails/trailDetails");
         Trail trails = trailService.getTrailById(id);
 //        List<Checkpoint> checkpoints = checkpointService.getAllCheckpoints();
