@@ -23,7 +23,6 @@ create table if not exists user_checkpoints
 create table if not exists checkpoint_table
 (
     checkpoint_id BIGINT      NOT NULL AUTO_INCREMENT primary key,
-    trail_id      BIGINT      NOT NULL,
     name          varchar(45) NOT NULL,
     latitude      DOUBLE      NOT NULL,
     longitude     DOUBLE      NOT NULL,

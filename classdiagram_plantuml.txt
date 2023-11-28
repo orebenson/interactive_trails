@@ -164,6 +164,7 @@ package Models {
     ProfileRepositoryImpl ..> CheckpointRepository
 
     ''''''''''''' Notes
+    note "To set profile.checkpoints, get user and checkpoints, joining on user_checkpoints table" as n6
     note "QR codes can be mapped to checkpoint IDs, so when one is scanned,\n it gets the checkpoint by ID, and adds it to the user_checkpoints table " as n2
     'note "to create trail:\n save trail name to trail table and get trail_ID\n for each checkpoint in the trail:\n   save checkpoint to checkpoint table and get checkpoint_ID\n   add trail_ID and checkpoint_ID to Trail_Checkpoint" as n1
 
@@ -176,6 +177,7 @@ package Services {
         + Long createTrail(Trail trail);
         + List<Trail> getAllTrails();
         + Trail getTrailById(Long id);
+        + Trail getTrailByCheckpointId(Long id);
     }
 
     class TrailServiceImpl {
@@ -226,7 +228,7 @@ package Services {
     ProfileServiceImpl --|> ProfileService
     ProfileServiceImpl *- ProfileRepository
 
-    note "Each checkpoint in the profile.checkpoints contains the Trail that it is from" as n4
+    note "for each checkpoint in profile.checkpoints:\n - checkpoint_id = checkpoint.getId()\n - trail = trailService.getTrailByCheckpointId(checkpoint_id)" as n4
     n4 ..> ProfileService
 
 }

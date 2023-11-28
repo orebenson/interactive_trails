@@ -22,12 +22,21 @@ public class TrailRepositoryImpl implements TrailRepository {
     private void setTrailMapper() {
         this.trailMapper = (resultSet, i) -> {
             Trail trail = new Trail();
+            trail.setId(resultSet.getLong("trail_id"));
             trail.setName(resultSet.getString("name"));
             trail.setLocation(resultSet.getString("location"));
             trail.setDescription(resultSet.getString("description"));
             trail.setCheckpoints(checkpointRepository.findCheckpointsByTrailId(resultSet.getLong("trail_id")));
             return trail;
         };
+    }
+    @Override
+    public Trail findTrailByCheckpointId(Long checkpoint_id){
+        String sql = "SELECT t.* from trail_table t " +
+                "JOIN trail_checkpoint tc ON t.trail_id = tc.trail_id " +
+                "WHERE tc.checkpoint_id = ?";
+        Trail trail = jdbc.queryForObject(sql, trailMapper, checkpoint_id);
+        return trail;
     }
 
     @Override
@@ -64,10 +73,9 @@ public class TrailRepositoryImpl implements TrailRepository {
 
     private void saveCheckpoints(Trail trail) {
         for (Checkpoint checkpoint : trail.getCheckpoints()) {
-            checkpoint.setTrail(trail);
-            checkpointRepository.saveCheckpoint(checkpoint);
+            Long checkpoint_id = checkpointRepository.saveCheckpoint(checkpoint);
             String sql = "INSERT INTO trail_checkpoint (trail_id, checkpoint_id) VALUES (?, ?)";
-            jdbc.update(sql, trail.getId(), checkpoint.getId());
+            jdbc.update(sql, trail.getId(), checkpoint_id);
         }
     }
 }
