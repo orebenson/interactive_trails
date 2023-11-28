@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="~{/fragments/header :: bootstrap-css}"/>
+    <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <title>VZTA Trails</title>
+</head>
+<body>
+<div class="main-container">
+    <header th:replace="~{/fragments/header :: navbar}"></header>
+    <div class="page-container">
+
+        <main>
+            <h1> Trail Details </h1>
+
+            <div class="trail-container">
+                <!--      <div class="trail-picture">-->
+                <!--        <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">-->
+                <!--          <img class="trail-image" src="/Images/trail1Placeholder.jpg"-->
+                <!--               alt="picture outlining the trail">-->
+                <!--        </a>-->
+                <!--      </div>-->
+                <div class="trail-text" th:each="trail: ${trail}" th:text="${trail}">
+                    <strong>Trail Name: </strong> <span class="name" th:text="${trail.name}"></span><br>
+                    <strong>ID: </strong> <span class="trailId" th:text="${trail.id}"></span><br>
+                    <strong>Location: </strong> <span class="location" th:text="${trail.location}"></span><br>
+                    <strong>Description: </strong> <span class="trailDescription" th:text="${trail.description}"></span><br>
+                    <strong>Checkpoints: </strong> <span class="firstCheckpoint" th:each="checkpoint: ${checkpoints}"
+                                                         th:text="${trail.checkpoints}"></span><br>
+                    <a th:href="@{/trails/{id} (id=${trail.id})}" th:text="more" class="details"></a>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

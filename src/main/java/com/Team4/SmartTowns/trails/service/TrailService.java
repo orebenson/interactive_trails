@@ -9,7 +9,4 @@ public interface TrailService {
     List<Trail> getAllTrails();
     Trail getTrailById(Long id);
 
-
-
-
 }

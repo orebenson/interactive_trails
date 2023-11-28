@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
-<!--    <link rel="stylesheet" href="../../static/stylesheets/trails.css">-->
+    <link rel="stylesheet" href="/static/stylesheets/trails.css">
 
     <title>VZTA Trails</title>
 </head>
@@ -19,24 +19,25 @@
             <h1>Trails</h1>
             <p> You can view all the available trails here.</p>
 
-            <section>
-                <div>
-                    <!--                        <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">-->
-                    <!--                            <img class="trail-image" src="/Images/trail1Placeholder.jpg"-->
-                    <!--                                 alt="picture outlining the trail">-->
-                    <!--                        </a>-->
-                    <ul class="trail-container">
-                        <li class="trail-text" th:each="trail: ${trails}" th:text="${trail}">
-                            <strong>Trail Name: </strong> <span class="name" th:text="${trail.name}"></span><br>
-                            <strong>ID: </strong> <span class="trailId" th:text="${trail.id}"></span><br>
-                            <strong>Location: </strong> <span class="location" th:text="${trail.location}"></span><br>
-                            <strong>Description: </strong> <span class="trailDescription" th:text="${trail.description}"></span><br>
-                            <strong>Starting checkpoint:</strong> <span class="firstCheckpoint" th:text="${trail.checkpoints[0]}"></span><br>
-                            <p th:href="@{/trails/{id} (id=${trail.id})}" th:text="more" class="details"> View more details</p>
-                        </li>
-                    </ul>
+
+            <div class="trail-container">
+                <!--                        <div class="trail-picture">-->
+                <!--                            <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">-->
+                <!--                                <img class="trail-image" src="/Images/trail1Placeholder.jpg"-->
+                <!--                                     alt="picture outlining the trail">-->
+                <!--                            </a>-->
+                <!--                        </div>-->
+                <div class="trail-details" th:each="trail: ${trails}" th:text="${trail}">
+                    <p><strong>Trail Name: </strong><span th:text="${trail.name}"></span></p>
+                    <p><strong>ID: </strong><span th:text="${trail.id}"></span></p><br>
+                    <p><strong>Location: </strong><span th:text="${trail.location}"></span></p><br>
+                    <p><strong>Description: </strong><span th:text="${trail.description}"></span></p><br>
+                    <p><strong>Starting Checkpoint: </strong><span th:text="${trail.checkpoints[0]}"></span></p><br>
+                    <p><a th:href="@{/trails/{id} (id=${trail.id})}" th:text="details" class="details"></a></p>
                 </div>
-            </section>
+
+            </div>
+
 
         </main>
     </div>
