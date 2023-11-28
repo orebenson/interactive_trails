@@ -7,4 +7,5 @@ public interface TrailRepository {
     Trail findTrailById(Long trail_id);
     Long saveTrail(Trail trail);
     List<Trail> findAllTrails();
+    Trail findTrailByCheckpointId(Long checkpoint_id);
 }

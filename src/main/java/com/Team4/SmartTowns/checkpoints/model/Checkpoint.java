@@ -11,7 +11,6 @@ public class Checkpoint {
     private Long id;
     private String name;
     private double[] coordinates;
-    private Trail trail;
     private String description;
 
     public Checkpoint() {
@@ -19,6 +18,5 @@ public class Checkpoint {
         this.name = "";
         this.coordinates = new double[2];
         this.description = "";
-        this.trail = null;
     }
 }
