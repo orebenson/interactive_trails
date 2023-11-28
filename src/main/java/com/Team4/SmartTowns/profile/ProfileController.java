@@ -27,4 +27,11 @@ public class ProfileController {
     return modelAndView;
     }
 
+
+    @GetMapping("/profile") {
+        public ModelAndView getProfile(Principal principal) {
+            String loggedInUser = principal.gerName()
+        }
+    }
+
 }

@@ -6,12 +6,20 @@ import java.util.List;
 
 public class Profile {
     private String username;
+//    private  String password;
+//    private  boolean loginStatus;
+    private  String registerDate;
     private List<Checkpoint> checkpoints;
 
 
     public Profile(String username, List<Checkpoint> checkpoints) {
         this.username = username;
         this.checkpoints = checkpoints;
+    }
+
+
+    public boolean  verifyLogin() {
+        //login verification logic
     }
 
     public String getUsername() {
