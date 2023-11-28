@@ -152,7 +152,7 @@ package Models {
         - JdbcTemplate jdbc
         - RowMapper<Profile> profileMapper
         --
-        ProfileRepositoryImpl(JdbcTemplate aJdbc)
+        + ProfileRepositoryImpl(JdbcTemplate aJdbc)
         + getProfile(String username) : Profile
         + saveUser(String username, String password)
         - setProfileMapper()
@@ -165,7 +165,7 @@ package Models {
 
     ''''''''''''' Notes
     note "QR codes can be mapped to checkpoint IDs, so when one is scanned,\n it gets the checkpoint by ID, and adds it to the user_checkpoints table " as n2
-    note "to create trail:\n save trail name to trail table and get trail_ID\n for each checkpoint in the trail:\n   save checkpoint to checkpoint table and get checkpoint_ID\n   add trail_ID and checkpoint_ID to Trail_Checkpoint" as n1
+    'note "to create trail:\n save trail name to trail table and get trail_ID\n for each checkpoint in the trail:\n   save checkpoint to checkpoint table and get checkpoint_ID\n   add trail_ID and checkpoint_ID to Trail_Checkpoint" as n1
 
 }
 
@@ -213,19 +213,21 @@ package Services {
     ''''''''''''' Profile
 
     interface ProfileService {
-        + getUser(Long user_id) : User, User.medals, User.checkpoints
+        + getUser(String username) : Profile, Profile.checkpoints
         + addUser(String username, String password)
     }
 
     class ProfileServiceImpl {
         - ProfileRepository profileRepository
         --
-        + getUser(Long user_id) : User, User.checkpoints
-        + addUser(String username, String password)
+        ... all methods from ProfileService
     }
 
     ProfileServiceImpl --|> ProfileService
     ProfileServiceImpl *- ProfileRepository
+
+    note "Each checkpoint in the profile.checkpoints contains the Trail that it is from" as n4
+    n4 ..> ProfileService
 
 }
 
