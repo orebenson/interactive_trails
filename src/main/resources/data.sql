@@ -1,4 +1,4 @@
-insert into roles_table (name)
+insert into roles_table (role_id, name)
 values
-    ('ADMIN'),
-    ('USER');
+    (1, 'ADMIN'),
+    (2, 'USER');
