@@ -13,7 +13,9 @@ create table if not exists user_table
 
 create table if not exists user_checkpoints
 (
-
+ id            BIGINT      NOT NULL AUTO_INCREMENT primary key,
+    username      VARCHAR(50) not null,
+    checkpoint_id BIGINT      not null
 ) engine = InnoDB;
 
 create table if not exists checkpoint_table
