@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProfileController {
     @GetMapping(value = {"/profile"})
-    public ModelAndView userName(){
+    public ModelAndView profile(){
         ModelAndView modelAndView = new ModelAndView("/profile/profilePage");
 //       modelAndView.setViewName("profilePage.html");
 
