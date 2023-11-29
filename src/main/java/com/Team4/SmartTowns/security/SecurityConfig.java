@@ -25,7 +25,7 @@ public class SecurityConfig {
     private DataSource dataSource;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
