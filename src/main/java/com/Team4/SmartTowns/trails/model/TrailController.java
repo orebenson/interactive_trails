@@ -30,7 +30,9 @@ public class TrailController {
     public ModelAndView showTrails() {
         ModelAndView mvc = new ModelAndView("/trails/trails");
         List<Trail> trails = trailService.getAllTrails();
+
         mvc.addObject("trails", trails);
+
         return mvc;
 
         //adding some default data to populate the page.

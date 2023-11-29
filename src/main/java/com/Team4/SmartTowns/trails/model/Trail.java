@@ -15,7 +15,6 @@ public class Trail {
     private String name;
     private String location;
     private List<Checkpoint> checkpoints;
-
     private String description;
 
     public Trail(){

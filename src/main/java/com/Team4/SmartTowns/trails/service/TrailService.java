@@ -8,5 +8,4 @@ public interface TrailService {
     Long createTrail(Trail trail);
     List<Trail> getAllTrails();
     Trail getTrailById(Long id);
-
 }
