@@ -34,16 +34,52 @@ document.addEventListener('DOMContentLoaded', function () {
             const code = jsQR(imageData.data, imageData.width, imageData.height, {
                 inversionAttempts: "dontInvert",
             });
+
             if (code) {
-                qrResult.textContent = 'QR Code Result: ' + code.data;
+                // When a QR code is detected, we stop scanning,
+                // send the QR code to the server,
+                // and update the button text to allow a new scan.
                 scanning = false;
                 video.srcObject.getTracks().forEach(track => track.stop());
                 startScanBtn.textContent = 'Start Scan';
+                qrResult.textContent = 'QR Code Detected. Sending...';
+
+                // Send the QR code to the server.
+                sendQRCodeToServer(code.data);
             } else {
+                // If no QR code was detected, continue scanning.
                 requestAnimationFrame(scanQRCode);
             }
         } else {
             canvasElement.hidden = true;
         }
     }
+
+
+    function sendQRCodeToServer(qrData) {
+        // Construct the POST request to send the QR code data to the server
+        fetch('/QRpage/scan', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain',
+                // Add any other headers your server requires, such as CSRF tokens
+            },
+            body: qrData
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Server returned an error while scanning QR code.');
+                }
+            })
+            .then(text => {
+                qrResult.textContent = 'QR Code Result: ' + text;
+            })
+            .catch(error => {
+                console.error('Error during QR code scan:', error);
+                qrResult.textContent = 'Error during QR code scan.';
+            });
+    }
+
 });
