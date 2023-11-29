@@ -29,7 +29,6 @@ public class QRController {
     @PostMapping("/scan")
     public ResponseEntity<?> handleQRCodeScan(@RequestBody String checkpointId, Principal principal) {
 
-
         String username = principal.getName();
 
         Long id = Long.parseLong(checkpointId.trim());

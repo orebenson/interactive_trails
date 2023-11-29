@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (code) {
-                // When a QR code is detected, we stop scanning,
-                // send the QR code to the server,
-                // and update the button text to allow a new scan.
+
                 scanning = false;
                 video.srcObject.getTracks().forEach(track => track.stop());
                 startScanBtn.textContent = 'Start Scan';
