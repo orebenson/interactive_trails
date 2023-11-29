@@ -23,6 +23,7 @@
         <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
             <a th:href="@{/trails/add}">Add Trail</a>
         </li>
+
     </ul>
     <ul>
         <li th:if="${#authorization.expression('isAuthenticated()')}">
