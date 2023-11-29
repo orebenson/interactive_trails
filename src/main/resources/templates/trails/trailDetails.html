@@ -14,6 +14,7 @@
         <main>
             <h1> Trail Details </h1>
             <p>The trail details can be found below:</p>
+            <br>
 
             <div class="trail-container">
                 <!--      <div class="trail-picture">-->
@@ -22,15 +23,28 @@
                 <!--               alt="picture outlining the trail">-->
                 <!--        </a>-->
                 <!--      </div>-->
-                <ul class="trail-text" th:each="trail: ${trail}" th:text="${trail}">
-                    <strong>Trail Name: </strong><li class="name" th:text="${trail.name}"></li><br>
-                    <strong>ID: </strong> <li class="trailId" th:text="${trail.id}"></li><br>
-                    <strong>Location: </strong><li class="location" th:text="${trail.location}"></li><br>
-                    <strong>Description: </strong><li class="trailDescription" th:text="${trail.description}"></li><br>
-                    <strong>Checkpoints: </strong><li class="firstCheckpoint" th:each="checkpoint: ${checkpoints}"
-                                                         th:text="${trail.checkpoints}"></li><br>
-                    <a th:href="@{/trails/{id} (id=${trail.id})}" th:text="more" class="details"></a>
+
+
+                <strong>Trail Name: </strong>
+                <div class="name" th:text="${trail.name}"></div>
+                <br>
+                <strong>ID: </strong>
+                <div class="trailId" th:text="${trail.id}"></div>
+                <strong>Location: </strong>
+                <div class="location" th:text="${trail.location}"></div>
+                <strong>Description: </strong>
+                <div class="trailDescription" th:text="${trail.description}"></div>
+                <strong>Checkpoints: </strong>
+                <ul>
+                    <div th:each="checkpoint: ${trail.checkpoints}">
+                        <li>
+                            <div th:text="${checkpoint.id}"></div>
+                            <div th:text="${checkpoint.name}"></div>
+                            <div th:text="${checkpoint.getDescription()}"></div>
+                        </li>
+                    </div>
                 </ul>
+
             </div>
         </main>
     </div>

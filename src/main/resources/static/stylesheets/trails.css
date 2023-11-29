@@ -17,6 +17,10 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
 }
+.trail-list ul li {
+    list-style-type: none;
+
+}
 
 .trail-container{
     display:flex;

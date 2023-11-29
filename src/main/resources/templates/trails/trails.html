@@ -18,6 +18,7 @@
         <main>
             <h1>Trails</h1>
             <p> You can view all the available trails here.</p>
+            <br>
 
 
             <div class="trail-container">
@@ -27,14 +28,19 @@
                 <!--                                     alt="picture outlining the trail">-->
                 <!--                            </a>-->
                 <!--                        </div>-->
-                <div class="trail-details" th:each="trail: ${trails}" th:text="${trail}">
-                    <p><strong>Trail Name: </strong><span th:text="${trail.name}"></span></p>
-                    <p><strong>ID: </strong><span th:text="${trail.id}"></span></p><br>
-                    <p><strong>Location: </strong><span th:text="${trail.location}"></span></p><br>
-                    <p><strong>Description: </strong><span th:text="${trail.description}"></span></p><br>
-                    <p><strong>Starting Checkpoint: </strong><span th:text="${trail.checkpoints[0]}"></span></p><br>
-                    <p><a th:href="@{/trails/{id} (id=${trail.id})}" th:text="details" class="details"></a></p>
-                </div>
+                <ul class="trail-list">
+                    <div class="trail-details" th:each="trail: ${trails}">
+                        <li>
+                            <p><strong>Trail Name: </strong><span th:text="${trail.name}"></span></p>
+<!--                            <p><strong>ID: </strong><span th:text="${trail.id}"></span></p>-->
+                            <p><strong>Location: </strong><span th:text="${trail.location}"></span></p>
+                            <p><strong>Description: </strong><span th:text="${trail.description}"></span></p>
+                            <p><strong>Starting Checkpoint: </strong><span
+                                    th:text="${trail.checkpoints[0].name}"></span></p>
+                            <p><a th:href="@{/trails/{id} (id=${trail.id})}" th:text="Details" class="details"></a></p><br>
+                        </li>
+                    </div>
+                </ul>
 
             </div>
 
