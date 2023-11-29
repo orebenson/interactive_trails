@@ -1,4 +1,4 @@
-package com.Team4.SmartTowns.profile;
+package com.Team4.SmartTowns.profile.controllers;
 
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +11,9 @@ public class ProfileController {
     public ModelAndView profile(){
         ModelAndView modelAndView = new ModelAndView("/profile/profilePage");
 //       modelAndView.setViewName("profilePage.html");
-
+// getProfile username
+//        return valid or not
+// profileService
        //dummy data for the profile page fields.
        modelAndView.addObject("name", "John");
         modelAndView.addObject("town", "Cardiff Town");

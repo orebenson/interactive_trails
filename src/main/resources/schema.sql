@@ -11,11 +11,11 @@ create table if not exists user_table
     username VARCHAR(50)  NOT NULL PRIMARY KEY,
     password VARCHAR(500) NOT NULL,
     enabled  boolean      NOT NULL,
-    email  VARCHAR(50)  NOT NULL,
-    address VARCHAR(500)  NOT NULL,
+    email    VARCHAR(50),
+    address  VARCHAR(500),
     address2 VARCHAR(500),
-    city VARCHAR (50),
-    zipCode VARCHAR(500)
+    city     VARCHAR(50),
+    zipCode  VARCHAR(500)
 ) engine = InnoDB;
 
 create table if not exists user_checkpoints

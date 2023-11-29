@@ -1,4 +1,4 @@
-package com.Team4.SmartTowns.registrationform.model;
+package com.Team4.SmartTowns.profile.model;
 import com.Team4.SmartTowns.checkpoints.model.Checkpoint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
