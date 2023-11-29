@@ -35,6 +35,7 @@ public class TrailManagementController {
         ModelAndView mav = new ModelAndView("redirect:/");
         return mav;
     }
+
 //
 //    @GetMapping("/trails/{id}/edit")
 //    public ModelAndView getEditTrail(@PathVariable("id") Long id){
