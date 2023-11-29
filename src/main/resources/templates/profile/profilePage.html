@@ -18,12 +18,6 @@
     <header th:replace="~{/fragments/header :: navbar}"></header>
     <div class="page-container">
         <!--    page content goes here-->
-        <div id="title">Trail 1</div>
-        <div id="outerBar">
-            <div id="progressBar"></div>
-        </div>
-        <input id="completed" type="number" placeholder="input how much done" min="0" max="100">
-        <button id="confirmButton" onclick="newProgress()">Press here!</button>
 
         <div class="mx-auto">
             <!-- Profile widget -->
@@ -80,7 +74,16 @@
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         <h5 class="mb-0">Recently Completed Trails</h5>
                         <a href="#" class="btn btn-link text-muted">Show all</a>
+
                     </div>
+                    <div id="title">Trail 1</div>
+                    <div id="status">Status: Incomplete</div>
+                    <div id="outerBar">
+                        <div id="progressBar"></div>
+                    </div>
+                    <input id="completed" type="number" placeholder="input how much done" min="0" max="100">
+                    <button id="confirmButton" onclick="newProgress()">Press here!</button>
+
                     <div class="row">
                         <div class="col-lg-6 mb-2 pr-lg-1">
                             <img
