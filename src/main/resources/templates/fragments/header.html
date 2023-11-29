@@ -21,7 +21,7 @@
             <a th:href="@{/profile}">Profile</a>
         </li>
         <li th:if="${#authorization.expression('isAuthenticated()')}">
-            <a th:href="@{/scan}">Scan QR Code</a>
+            <a th:href="@{/scan}">Scan QR</a>
         </li>
 
         <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
