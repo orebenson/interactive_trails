@@ -1,5 +1,7 @@
 insert into roles_table (role_id, name)
-values (1, 'ADMIN'), (2, 'USER');
+values
+    (1, 'ADMIN'),
+    (2, 'USER');
 
 -- add default admin account
 insert into user_table (username, password, enabled)
@@ -14,3 +16,4 @@ values ('admin', 1);
 #
 # insert into users_roles (username, role_id)
 # values ('user', 2);
+
