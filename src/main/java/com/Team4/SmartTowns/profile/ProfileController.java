@@ -19,11 +19,7 @@ public class ProfileController {
         modelAndView.addObject("completedTrails", 4);
 
         modelAndView.addObject("lockedTrails", 2);
-        modelAndView.addObject("about", "I love trails\n" +
-                "\n" +
-                "Embarking on a Journey\n" +
-                "\n" +
-                "Cool Trail!");
+        modelAndView.addObject("about", "Loving the new Trail application!");
     return modelAndView;
     }
 
