@@ -1,4 +1,4 @@
-package com.Team4.SmartTowns.profile;
+package com.Team4.SmartTowns.profile.controllers;
 
 
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProfileController {
     @GetMapping(value = {"/profile"})
-    public ModelAndView userName(){
+    public ModelAndView profile(){
         ModelAndView modelAndView = new ModelAndView("/profile/profilePage");
 //       modelAndView.setViewName("profilePage.html");
-
+// getProfile username
+//        return valid or not
+// profileService
        //dummy data for the profile page fields.
        modelAndView.addObject("name", "John");
         modelAndView.addObject("town", "Cardiff Town");
@@ -19,12 +21,15 @@ public class ProfileController {
         modelAndView.addObject("completedTrails", 4);
 
         modelAndView.addObject("lockedTrails", 2);
-        modelAndView.addObject("about", "I love trails\n" +
-                "\n" +
-                "Embarking on a Journey\n" +
-                "\n" +
-                "Cool Trail!");
+        modelAndView.addObject("about", "Loving the new Trail application!");
     return modelAndView;
     }
+
+//
+//    @GetMapping("/profile") {
+//        public ModelAndView getProfile(Principal principal) {
+//            String loggedInUser = principal.getName()
+//        }
+//    }
 
 }
