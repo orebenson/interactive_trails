@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.security.Principal;
+
 import java.security.Principal;
 
 @Controller
+
 public class QRController {
 
     private final CheckpointService checkpointService;
@@ -22,8 +23,8 @@ public class QRController {
     }
     @GetMapping("/scan")
     public String qrScannerPage() {
-        // Assuming the HTML file is named 'qr-scanner.html' and located under 'src/main/resources/templates'
-        return "/QRpage/scan-qr";
+
+        return "QRpage/scan-qr";
     }
 
     @PostMapping("/scan")

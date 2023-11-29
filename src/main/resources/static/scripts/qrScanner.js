@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const startScanBtn = document.getElementById('start-scan');
     let scanning = false;
 
+
+
+
     startScanBtn.onclick = function() {
         if (scanning) {
             scanning = false;
@@ -36,16 +39,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (code) {
-
+                console.log('QR Code detected:', code.data); // Added for debugging
                 scanning = false;
                 video.srcObject.getTracks().forEach(track => track.stop());
                 startScanBtn.textContent = 'Start Scan';
                 qrResult.textContent = 'QR Code Detected. Sending...';
-
-                // Send the QR code to the server.
                 sendQRCodeToServer(code.data);
             } else {
-                // If no QR code was detected, continue scanning.
                 requestAnimationFrame(scanQRCode);
             }
         } else {
@@ -54,13 +54,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+
     function sendQRCodeToServer(qrData) {
-        // Construct the POST request to send the QR code data to the server
-        fetch('/QRpage/scan', {
+
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        fetch('/scan', {
             method: 'POST',
             headers: {
                 'Content-Type': 'text/plain',
-                // Add any other headers your server requires, such as CSRF tokens
+                [csrfHeader]: csrfToken, // Include the CSRF token in the request header
             },
             body: qrData
         })
