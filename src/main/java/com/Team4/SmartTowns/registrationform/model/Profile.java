@@ -1,11 +1,15 @@
 package com.Team4.SmartTowns.registrationform.model;
+import com.Team4.SmartTowns.checkpoints.model.Checkpoint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
 @AllArgsConstructor
-public class RegistrationForm {
+public class Profile {
     private String userName;
     private String email;
     private String address;
@@ -13,6 +17,8 @@ public class RegistrationForm {
     private String address2;
     private String city;
     private String zipCode;
+
+    private List<Checkpoint> checkpoints;
 
 //    public RegistrationForm(String userName, String email, String address, String address2, String city, String zipCode) {
 //        this.userName = userName;
@@ -22,12 +28,13 @@ public class RegistrationForm {
 //        this.city = city;
 //        this.zipCode = zipCode;
 //    }
-    public  RegistrationForm(){
+    public Profile(){
         this.userName = "";
         this.email = "";
         this.address = "";
         this.address2 = "";
         this.city = "";
         this.zipCode = "";
+        this.checkpoints = new ArrayList<>();
     }
 }
