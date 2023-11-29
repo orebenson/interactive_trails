@@ -18,7 +18,13 @@ package Database <<Database>>{
     entity User_Table {
         username
         --
+        enabled
+        email
+        address
         password
+        address2
+        city
+        zipCode
     }
 
     entity User_Checkpoints {
@@ -139,13 +145,19 @@ package Models {
     '''''''''''''' Profile Models
 
     class Profile {
-        - String username
+        - String userName;
+        - String email;
+        - String address;
+        - String password;
+        - String address2;
+        - String city;
+        - String zipCode;
         - List<Checkpoint> checkpoints
     }
 
     interface ProfileRepository {
         + getProfile(String username) : Profile
-        + saveUser(String username, String password)
+        + saveUser(String userName, String email, String address, String password, String address2, String city, String zipCode)
     }
 
     class ProfileRepositoryImpl {
@@ -153,9 +165,8 @@ package Models {
         - RowMapper<Profile> profileMapper
         --
         + ProfileRepositoryImpl(JdbcTemplate aJdbc)
-        + getProfile(String username) : Profile
-        + saveUser(String username, String password)
         - setProfileMapper()
+        ... and all methods from ProfileRepository
     }
 
     ProfileRepositoryImpl --|> ProfileRepository
@@ -216,7 +227,7 @@ package Services {
 
     interface ProfileService {
         + getUser(String username) : Profile, Profile.checkpoints
-        + addUser(String username, String password)
+        + addUser(String userName, String email, String address, String password, String address2, String city, String zipCode)
     }
 
     class ProfileServiceImpl {
