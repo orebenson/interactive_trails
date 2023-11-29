@@ -29,5 +29,6 @@ public class TrailServiceImpl implements TrailService {
     public Trail getTrailById(Long id) {
         return trailRepository.findTrailById(id);
     }
-
+    @Override
+    public Trail getTrailByCheckpointId(Long id) {return trailRepository.findTrailByCheckpointId(id);}
 }

@@ -8,8 +8,9 @@ drop table if exists users_roles;
 
 create table if not exists user_table
 (
-    username varchar(50)  not null primary key,
-    password varchar(500) not null
+    username VARCHAR(50)  NOT NULL PRIMARY KEY,
+    password VARCHAR(500) NOT NULL,
+    enabled  boolean      not null
 ) engine = InnoDB;
 
 create table if not exists user_checkpoints
@@ -22,7 +23,6 @@ create table if not exists user_checkpoints
 create table if not exists checkpoint_table
 (
     checkpoint_id BIGINT      NOT NULL AUTO_INCREMENT primary key,
-    trail_id      BIGINT      NOT NULL,
     name          varchar(45) NOT NULL,
     latitude      DOUBLE      NOT NULL,
     longitude     DOUBLE      NOT NULL,
@@ -47,20 +47,20 @@ create table if not exists trail_table
 
 create table if not exists roles_table
 (
-    role_id BIGINT      NOT NULL AUTO_INCREMENT primary key,
-    name    varchar(45) NOT NULL
+    role_id BIGINT      NOT NULL,
+    name    VARCHAR(45) NOT NULL
 ) engine = InnoDB;
 
 create table if not exists users_roles
 (
-    id       BIGINT      NOT NULL AUTO_INCREMENT primary key,
-    username varchar(50) NOT NULL,
+    id       BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
     role_id  BIGINT      NOT NULL
 ) engine = InnoDB;
 
-# create view if not exists user_authorities as
-# select u.username as username, CONCAT("ROLE_", r.name) as authority
-# from user_table u
-#          inner join users_roles ur on u.username = ur.username
-#          inner join roles_table r on ur.role_id = r.role_id;
+create view if not exists user_authorities as
+select u.username as username, CONCAT("ROLE_", r.name) as authority
+from user_table u
+         inner join users_roles ur on u.username = ur.username
+         inner join roles_table r on ur.role_id = r.role_id;
 

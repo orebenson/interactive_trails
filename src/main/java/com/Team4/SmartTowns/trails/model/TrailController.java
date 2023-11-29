@@ -17,7 +17,16 @@ public class TrailController {
     private TrailService trailService;
 
     public TrailController(TrailService trailService){
+
         this.trailService = trailService;
+//        Trail tempTrail = new Trail();
+//        tempTrail.setName();
+//        tempTrail.setLocation();
+//        tempTrail.setDescription();
+//        tempTrail.getCheckpoints().get(0).setDescription()
+//        tempTrail.getCheckpoints().get(0).getCoordinates()[0] = 13253.13535;
+//        tempTrail.getCheckpoints().get(0).getCoordinates()[0] = 13253.13535;
+//        trailService.createTrail();
     }
 
     private CheckpointService checkpointService;

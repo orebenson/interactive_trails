@@ -28,7 +28,10 @@
     <header th:replace="~{/fragments/header :: navbar}"></header>
     <div class="page-container">
 
-        <form class="container mt-5" th:method="post" th:object="${trail}" th:action="@{/trails/add}">
+        <h1>Create Trail</h1>
+        <br>
+
+        <form class="container" th:method="post" th:object="${trail}" th:action="@{/trails/add}">
 
             <div class="mb-3">
                 <label for="trailTown" class="form-label"><h2>Choose Trail Town:</h2></label>
@@ -50,8 +53,10 @@
                 <textarea th:field="*{description}" type="text" id="trailDescription" class="form-control" required></textarea>
             </div>
 
+            <h2>Enter 15 Checkpoints:</h2>
+            <br>
             <div class="mb-3">
-                <label for="selectCheckpoint" class="form-label"><h2>Select Checkpoint to Edit:</h2></label>
+                <label for="selectCheckpoint" class="form-label"><h3>Select Checkpoint to Edit:</h3></label>
                 <select onchange="showCheckpoint(this.value)" id="selectCheckpoint" class="form-select">
                     <option value="-1">Select a Checkpoint</option>
                     <th:block th:each="index : ${#numbers.sequence(0, 14)}">
@@ -59,8 +64,6 @@
                     </th:block>
                 </select>
             </div>
-
-            <h2>Enter 15 Checkpoints:</h2>
 
             <div th:each="index : ${#numbers.sequence(0, 14)}" class="mb-4 checkpoint-container" style="display: none;"
                  th:id="${'checkpointContainer_' + index}">
