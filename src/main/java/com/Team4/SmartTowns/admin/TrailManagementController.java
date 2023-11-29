@@ -31,10 +31,11 @@ public class TrailManagementController {
         // use the trail service to add the trail
         // if no errors:
         Long id = trailService.createTrail(trail);
-//        System.out.println(trailService.getTrailById(id));
+        System.out.println(trailService.getTrailById(id));
         ModelAndView mav = new ModelAndView("redirect:/");
         return mav;
     }
+
 //
 //    @GetMapping("/trails/{id}/edit")
 //    public ModelAndView getEditTrail(@PathVariable("id") Long id){

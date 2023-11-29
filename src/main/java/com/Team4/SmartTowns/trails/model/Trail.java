@@ -15,7 +15,6 @@ public class Trail {
     private String name;
     private String location;
     private List<Checkpoint> checkpoints;
-
     private String description;
 
     public Trail(){
@@ -26,9 +25,9 @@ public class Trail {
         this.description = "";
         for(int i = 0; i < 15; i++) {
             Checkpoint checkpoint = new Checkpoint();
-            checkpoint.setTrail(this);
             this.checkpoints.add(checkpoint);
         }
     }
+
 
 }

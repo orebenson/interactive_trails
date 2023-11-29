@@ -2,6 +2,11 @@ package com.Team4.SmartTowns.checkpoints.model;
 
 import com.Team4.SmartTowns.checkpoints.model.Checkpoint;
 import com.Team4.SmartTowns.checkpoints.model.CheckpointRepository;
+import com.Team4.SmartTowns.trails.model.Trail;
+import com.Team4.SmartTowns.trails.model.TrailRepository;
+import com.Team4.SmartTowns.trails.service.TrailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -21,8 +26,10 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     private void setCheckpointMapper() {
         this.checkpointMapper = (resultSet, i) -> {
             Checkpoint checkpoint = new Checkpoint();
+            checkpoint.setId(resultSet.getLong("checkpoint_id"));
             checkpoint.setName(resultSet.getString("name"));
             checkpoint.setCoordinates(new double[]{resultSet.getDouble("latitude"), resultSet.getDouble("longitude")});
+            checkpoint.setDescription(resultSet.getString("description"));
             return checkpoint;
         };
     }
@@ -67,14 +74,12 @@ public class CheckpointRepositoryImpl implements CheckpointRepository {
     }
 
     private Long insertCheckpoint(Checkpoint checkpoint) {
-        String sql = "INSERT INTO checkpoint_table (trail_id, name, latitude, longitude, description) VALUES (?, ?, ?, ?, ?) RETURNING checkpoint_id";
-        Long checkpoint_id = jdbc.queryForObject(sql, Long.class, checkpoint.getTrail().getId(), checkpoint.getName(), checkpoint.getCoordinates()[0], checkpoint.getCoordinates()[1], checkpoint.getDescription());
-        checkpoint.setId(checkpoint_id);
-        return checkpoint_id;
+        String sql = "INSERT INTO checkpoint_table (name, latitude, longitude, description) VALUES (?, ?, ?, ?) RETURNING checkpoint_id";
+        return jdbc.queryForObject(sql, Long.class, checkpoint.getName(), checkpoint.getCoordinates()[0], checkpoint.getCoordinates()[1], checkpoint.getDescription());
     }
 
     private Long updateCheckpoint(Checkpoint checkpoint) {
-        String sql = "UPDATE checkpoint_table SET trail_id = ?, name = ?, latitude = ?, longitude = ?, description = ? WHERE checkpoint_id = ? RETURNING checkpoint_id";
-        return jdbc.queryForObject(sql, Long.class, checkpoint.getTrail().getId(), checkpoint.getName(), checkpoint.getCoordinates()[0], checkpoint.getCoordinates()[1], checkpoint.getDescription(), checkpoint.getId());
+        String sql = "UPDATE checkpoint_table SET name = ?, latitude = ?, longitude = ?, description = ? WHERE checkpoint_id = ? RETURNING checkpoint_id";
+        return jdbc.queryForObject(sql, Long.class, checkpoint.getName(), checkpoint.getCoordinates()[0], checkpoint.getCoordinates()[1], checkpoint.getDescription(), checkpoint.getId());
     }
 }

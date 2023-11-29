@@ -18,7 +18,13 @@ package Database <<Database>>{
     entity User_Table {
         username
         --
+        enabled
+        email
+        address
         password
+        address2
+        city
+        zipCode
     }
 
     entity User_Checkpoints {
@@ -139,23 +145,28 @@ package Models {
     '''''''''''''' Profile Models
 
     class Profile {
-        - String username
+        - String userName;
+        - String email;
+        - String address;
+        - String password;
+        - String address2;
+        - String city;
+        - String zipCode;
         - List<Checkpoint> checkpoints
     }
 
     interface ProfileRepository {
         + getProfile(String username) : Profile
-        + saveUser(String username, String password)
+        + saveUser(String userName, String email, String address, String password, String address2, String city, String zipCode)
     }
 
     class ProfileRepositoryImpl {
         - JdbcTemplate jdbc
         - RowMapper<Profile> profileMapper
         --
-        ProfileRepositoryImpl(JdbcTemplate aJdbc)
-        + getProfile(String username) : Profile
-        + saveUser(String username, String password)
+        + ProfileRepositoryImpl(JdbcTemplate aJdbc)
         - setProfileMapper()
+        ... and all methods from ProfileRepository
     }
 
     ProfileRepositoryImpl --|> ProfileRepository
@@ -164,8 +175,9 @@ package Models {
     ProfileRepositoryImpl ..> CheckpointRepository
 
     ''''''''''''' Notes
+    note "To set profile.checkpoints, get user and checkpoints, joining on user_checkpoints table" as n6
     note "QR codes can be mapped to checkpoint IDs, so when one is scanned,\n it gets the checkpoint by ID, and adds it to the user_checkpoints table " as n2
-    note "to create trail:\n save trail name to trail table and get trail_ID\n for each checkpoint in the trail:\n   save checkpoint to checkpoint table and get checkpoint_ID\n   add trail_ID and checkpoint_ID to Trail_Checkpoint" as n1
+    'note "to create trail:\n save trail name to trail table and get trail_ID\n for each checkpoint in the trail:\n   save checkpoint to checkpoint table and get checkpoint_ID\n   add trail_ID and checkpoint_ID to Trail_Checkpoint" as n1
 
 }
 
@@ -176,6 +188,7 @@ package Services {
         + Long createTrail(Trail trail);
         + List<Trail> getAllTrails();
         + Trail getTrailById(Long id);
+        + Trail getTrailByCheckpointId(Long id);
     }
 
     class TrailServiceImpl {
@@ -213,19 +226,21 @@ package Services {
     ''''''''''''' Profile
 
     interface ProfileService {
-        + getUser(Long user_id) : User, User.medals, User.checkpoints
-        + addUser(String username, String password)
+        + getUser(String username) : Profile, Profile.checkpoints
+        + addUser(String userName, String email, String address, String password, String address2, String city, String zipCode)
     }
 
     class ProfileServiceImpl {
         - ProfileRepository profileRepository
         --
-        + getUser(Long user_id) : User, User.checkpoints
-        + addUser(String username, String password)
+        ... all methods from ProfileService
     }
 
     ProfileServiceImpl --|> ProfileService
     ProfileServiceImpl *- ProfileRepository
+
+    note "for each checkpoint in profile.checkpoints:\n - checkpoint_id = checkpoint.getId()\n - trail = trailService.getTrailByCheckpointId(checkpoint_id)" as n4
+    n4 ..> ProfileService
 
 }
 
