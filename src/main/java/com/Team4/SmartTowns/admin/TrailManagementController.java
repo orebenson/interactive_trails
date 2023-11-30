@@ -57,4 +57,6 @@ public class TrailManagementController {
 
 //
 //    @PostMapping("/trails/{id}/delete")
+
+//    GetMapping("/trails/{id}/generatecodes")
 }
