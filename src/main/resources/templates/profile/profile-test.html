@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="~{/fragments/header :: bootstrap-css}"/>
+    <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <title>VZTA Trails</title>
+</head>
+<body>
+<div class="main-container">
+    <header th:replace="~{/fragments/header :: navbar}"></header>
+    <div class="page-container">
+
+        <!--    page content goes here-->
+        <h1>Profile</h1>
+        <p th:text="'Username: ' + ${profile.userName}"></p>
+        <p th:text="'Email: ' + ${profile.email}"></p>
+        <p th:text="'Address: ' + ${profile.address}"></p>
+        <p th:text="'Address 2: ' + ${profile.address2}"></p>
+        <p th:text="'City: ' + ${profile.city}"></p>
+        <p th:text="'Zip Code: ' + ${profile.zipCode}"></p>
+
+        <h2>Started Trails</h2>
+        <ul th:if="${not #lists.isEmpty(startedTrails)}">
+            <li th:each="trail : ${startedTrails}">
+                <p th:text="'Trail Name: ' + ${trail.name}"></p>
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar"
+                         th:style="'width: ' + ${#lists.size(checkpointsByTrail[trail.name]) * 20 + '%'}">
+                        <span th:text="'Progress: ' + ${#lists.size(checkpointsByTrail[trail.name])} + '/' + ${#lists.size(trail.checkpoints)}"></span>
+                    </div>
+                </div>
+
+                <ul>
+                    <li th:each="checkpoint : ${trail.checkpoints}">
+                        <p th:text="'Checkpoint Name: ' + ${checkpoint.name}"></p>
+                        <p th:class="${#lists.contains(checkpointsByTrail[trail.name], checkpoint)} ? 'collected' : 'not-collected'">
+                            Collected
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p th:if="${#lists.isEmpty(startedTrails)}">No started trails</p>
+
+    </div>
+</div>
+</body>
+</html>
