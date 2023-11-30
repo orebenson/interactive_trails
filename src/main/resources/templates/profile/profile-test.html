@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/profilecheckpointstyles.css" />
     <title>VZTA Trails</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
         <p th:text="'Zip Code: ' + ${profile.zipCode}"></p>
 
         <h2>Started Trails</h2>
-        <ul th:if="${not #lists.isEmpty(startedTrails)}">
+        <ul class="trail-container" th:if="${not #lists.isEmpty(startedTrails)}">
             <li th:each="trail : ${startedTrails}">
                 <p th:text="'Trail Name: ' + ${trail.name}"></p>
 
@@ -32,12 +33,12 @@
                     </div>
                 </div>
 
-                <ul>
+                <ul class="checkpoints-container">
                     <li th:each="checkpoint : ${trail.checkpoints}">
-                        <p th:text="'Checkpoint Name: ' + ${checkpoint.name}"></p>
-                        <p th:class="${#lists.contains(checkpointsByTrail[trail.name], checkpoint)} ? 'collected' : 'not-collected'">
-                            Collected
-                        </p>
+                        <div th:class="${#lists.contains(checkpointsByTrail[trail.name], checkpoint)} ? 'checkpoint-card collected' : 'checkpoint-card not-collected'">
+                            <p th:text="'Checkpoint Name: ' + ${checkpoint.name}"></p>
+                            <p th:text="'Collected: ' + (${#lists.contains(checkpointsByTrail[trail.name], checkpoint)} ? 'Yes' : 'No')"></p>
+                        </div>
                     </li>
                 </ul>
             </li>
