@@ -9,4 +9,5 @@ public interface TrailService {
     List<Trail> getAllTrails();
     Trail getTrailById(Long id);
     Trail getTrailByCheckpointId(Long id);
+    List<Trail> getStartedTrailsByUsername(String username);
 }

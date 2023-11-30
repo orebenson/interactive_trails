@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="~{/fragments/header :: bootstrap-css}"/>
+    <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <link rel="stylesheet" href="/stylesheets/leaderboardstyles.css">
+    <title>VZTA Trails</title>
+</head>
+
+
+<body>
+<div class="main-container">
+    <header th:replace="~{/fragments/header :: navbar}"></header>
+    <div class="page-container">
+
+        <h1>Leaderboard</h1>
+        <p>Users ranked by checkpoints</p>
+        <br>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Position</th>
+                <th>Username</th>
+                <th>Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${leaderboard}">
+                <td th:text="${user.position}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.count}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -23,7 +23,7 @@ public class Trail {
         this.location = "";
         this.checkpoints = new ArrayList<Checkpoint>();
         this.description = "";
-        for(int i = 0; i < 15; i++) {
+        for(int i = 0; i < 20; i++) {
             Checkpoint checkpoint = new Checkpoint();
             this.checkpoints.add(checkpoint);
         }

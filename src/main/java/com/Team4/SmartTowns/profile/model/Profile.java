@@ -11,9 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 public class Profile {
     private String userName;
+    private String password;
     private String email;
     private String address;
-    private String password;
     private String address2;
     private String city;
     private String zipCode;
@@ -30,6 +30,7 @@ public class Profile {
 //    }
     public Profile(){
         this.userName = "";
+        this.password = "";
         this.email = "";
         this.address = "";
         this.address2 = "";

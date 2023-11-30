@@ -31,4 +31,9 @@ public class TrailServiceImpl implements TrailService {
     }
     @Override
     public Trail getTrailByCheckpointId(Long id) {return trailRepository.findTrailByCheckpointId(id);}
+
+    @Override
+    public List<Trail> getStartedTrailsByUsername(String username){
+        return trailRepository.findStartedTrailsByUsername(username);
+    }
 }

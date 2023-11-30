@@ -1,5 +1,6 @@
 package com.Team4.SmartTowns.profile.model;
 
+import com.Team4.SmartTowns.checkpoints.service.CheckpointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,10 +14,13 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 
     private BCryptPasswordEncoder passwordEncoder;
 
+    private CheckpointService checkpointService;
+
     @Autowired
-    public ProfileRepositoryImpl(JdbcTemplate aJdbc, BCryptPasswordEncoder passwordEncoder) {
+    public ProfileRepositoryImpl(JdbcTemplate aJdbc, BCryptPasswordEncoder passwordEncoder, CheckpointService checkpointService) {
         this.jdbc = aJdbc;
         this.passwordEncoder = passwordEncoder;
+        this.checkpointService = checkpointService;
         setProfileMapper();
     }
 
@@ -30,6 +34,7 @@ public class ProfileRepositoryImpl implements ProfileRepository {
             profile.setAddress2(resultSet.getString("address2"));
             profile.setZipCode(resultSet.getString("zipCode"));
             profile.setEmail(resultSet.getString("email"));
+            profile.setCheckpoints(checkpointService.getCheckpointsByUsername(resultSet.getString("username")));
             return profile;
         };
     }
@@ -43,4 +48,6 @@ public class ProfileRepositoryImpl implements ProfileRepository {
         jdbc.queryForObject(roles_sql, String.class, username);
         return username;
     }
+
+
 }
