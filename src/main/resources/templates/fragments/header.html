@@ -17,6 +17,9 @@
     <ul>
         <li><a th:href="@{/}">Home</a></li>
         <li><a th:href="@{/trails}">Trails</a></li>
+        <li><a th:href="@{/leaderboard}">Leaderboard</a></li>
+
+
         <li th:if="${#authorization.expression('isAuthenticated()')}">
             <a th:href="@{/profile}">Profile</a>
         </li>
