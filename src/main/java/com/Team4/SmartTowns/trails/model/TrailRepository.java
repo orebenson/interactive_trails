@@ -8,4 +8,5 @@ public interface TrailRepository {
     Long saveTrail(Trail trail);
     List<Trail> findAllTrails();
     Trail findTrailByCheckpointId(Long checkpoint_id);
+    List<Trail> findStartedTrailsByUsername(String username);
 }
