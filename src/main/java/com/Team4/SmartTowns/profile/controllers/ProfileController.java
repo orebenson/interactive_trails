@@ -27,7 +27,7 @@ public class ProfileController {
         this.trailService = trailService;
     }
 
-    @GetMapping(value = {"/profile"})
+    @GetMapping(value = {"/profile-demo"})
     public ModelAndView profile() {
         ModelAndView modelAndView = new ModelAndView("/profile/profilePage");
         //dummy data for the profile page fields.
@@ -41,9 +41,9 @@ public class ProfileController {
     }
 
 
-    @GetMapping("/profile-test")
+    @GetMapping("/profile")
     public ModelAndView getProfile(Principal principal) {
-        ModelAndView mav = new ModelAndView("profile/profile-test");
+        ModelAndView mav = new ModelAndView("profile/profile-new");
         String loggedInUser = principal.getName();
 
         List<Trail> startedTrails = trailService.getStartedTrailsByUsername(loggedInUser);
@@ -62,6 +62,13 @@ public class ProfileController {
             checkpointsByTrail.put(trail.getName(), collectedCheckpoints);
         }
 
+        Map<String, Float> percentages = new HashMap<>();
+        for(Trail trail: startedTrails){
+            float percentage = (checkpointsByTrail.get(trail.getName()).size() * 100)/trail.getCheckpoints().size();
+            percentages.put(trail.getName(), percentage);
+        }
+
+        mav.addObject("percentages", percentages);
         mav.addObject("profile", profile);
         mav.addObject("startedTrails", startedTrails);
         mav.addObject("checkpointsByTrail", checkpointsByTrail);
