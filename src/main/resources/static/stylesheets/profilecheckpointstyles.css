@@ -1,0 +1,36 @@
+
+.checkpoints-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-top: 1rem;
+    flex-direction: row;
+}
+
+.trail-container, .checkpoints-container {
+    list-style: none;
+    padding: 0;
+}
+
+.checkpoint-card {
+    /*flex: 0 0 auto;*/
+    width: 150px;
+    margin-right: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.collected {
+    background-color: var(--accent-colour);
+}
+
+.not-collected {
+    background-color: var(--highlight-colour);
+}
+
+.checkpoint-card p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}

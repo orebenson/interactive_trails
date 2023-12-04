@@ -1,6 +1,7 @@
 package com.Team4.SmartTowns.profile.model;
 
 import com.Team4.SmartTowns.checkpoints.service.CheckpointService;
+import com.Team4.SmartTowns.trails.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -47,6 +48,12 @@ public class ProfileRepositoryImpl implements ProfileRepository {
         String roles_sql = "insert into users_roles (username, role_id) values (?, 2) RETURNING username";
         jdbc.queryForObject(roles_sql, String.class, username);
         return username;
+    }
+
+    @Override
+    public Profile findProfile(String username) {
+        String sql = "SELECT * FROM user_table WHERE username = ?";
+        return jdbc.queryForObject(sql, profileMapper, username);
     }
 
 
