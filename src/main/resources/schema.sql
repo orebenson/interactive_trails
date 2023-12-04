@@ -69,3 +69,9 @@ from user_table u
          inner join users_roles ur on u.username = ur.username
          inner join roles_table r on ur.role_id = r.role_id;
 
+create table if not exists medals_table
+(
+    id            BIGINT            NOT NULL AUTO_INCREMENT primary key,
+    name          VARCHAR(45)       not null,
+    description   VARCHAR(150)      not null
+    ) engine = InnoDB;
