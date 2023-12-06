@@ -69,9 +69,26 @@ from user_table u
          inner join users_roles ur on u.username = ur.username
          inner join roles_table r on ur.role_id = r.role_id;
 
-create table if not exists medals_table
+
+create table if not exists medal_types
 (
-    id            BIGINT            NOT NULL AUTO_INCREMENT primary key,
-    name          VARCHAR(45)       not null,
-    description   VARCHAR(150)      not null
+    id      INT             NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name    VARCHAR(255)    NOT NULL
+
+)   engine = InnoDB;
+
+
+
+create table if not exists medals_users
+(
+    id                  BIGINT            NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    role_id             BIGINT            NOT NULL,
+    name                VARCHAR(45)       NOT NULL,
+    medal_type_id       INT               NOT NULL,
+    checkpoints_sum     INT,
+    FOREGIN KEY (username) REFERENCES users_name(name),
+    FOREIGN KEY (medal_type_id) REFERENCES medal_types(id)
+
     ) engine = InnoDB;
+
+
