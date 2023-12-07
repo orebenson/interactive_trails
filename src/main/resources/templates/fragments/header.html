@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
+
+
+
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
@@ -10,9 +13,10 @@
           crossorigin="anonymous">
 
     <link th:fragment="mainstyles" rel="stylesheet" href="/stylesheets/mainstyles.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">-->
 </head>
+<body data-bs-theme="dark">
 
-<body>
 <header th:fragment="navbar" class="nav">
     <ul>
         <li><a th:href="@{/}">Home</a></li>
@@ -32,6 +36,8 @@
         </li>
 
     </ul>
+
+
     <ul>
         <li th:if="${#authorization.expression('isAuthenticated()')}">
             Welcome, <span th:text="${#authorization.getAuthentication().getName()}"></span>
@@ -47,10 +53,28 @@
             </form>
         </li>
 
+
+
     </ul>
+
+    <div class="form-check form-switch mx-4">
+        <input
+                class="form-check-input p-2"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckChecked"
+                checked
+                onclick="myFunction()"
+                style="background-color: grey; border-color: grey;"
+        />
+    </div>
+
 
 
 </header>
+<script src="../../static/scripts/dark-mode.js">
+
+</script>
 </body>
 
 </html>
