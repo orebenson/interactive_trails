@@ -7,10 +7,10 @@ import java.util.List;
 @Service
 public interface MedalService {
 
-    List<Medal> getMedalsForUser(String username);
+//    List<Medal> getMedalsForUser(String username);
 
-    void addMedalToUser(String username, String medalName);
-    Medal determineMedal(int checkpointSum);
+    void awardMedalToUser(String username, String medalName);
+
 
 
 }
