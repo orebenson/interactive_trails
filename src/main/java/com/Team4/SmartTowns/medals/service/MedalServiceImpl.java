@@ -10,22 +10,22 @@ import java.util.List;
 @Service
 public class MedalServiceImpl implements MedalService {
 
-    CheckpointRepository checkpointRepository;
 
+    private CheckpointRepository checkpointRepository;
     private MedalRepository medalRepository;
 
     @Override
     public List<Medal> getMedalsForUser(String username) {
-        return medalRepository.get
+        return medalRepository.findMedalsForUsers(username);
     }
 
     @Override
     public void addMedalToUser(String username, String medalName) {
-        int checkpointsReached = sumOfCheckpoints(username);
+        int checkpointsReached = checkpointRepository.sumCheckpointValuesByUsername(username);
 
         Medal medal = determineMedal(checkpointsReached);
 
-        medal.
+        medalRepository.save(new Medal(username, medal.getType()));
 
     }
 

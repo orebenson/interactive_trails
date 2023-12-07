@@ -10,13 +10,16 @@ public class Medal {
     private Long medalId;
     private String medalName;
     private String medalDescription;
-    private int checkpointCount;
+    private int checkpointsSum;
+    private MedalType medalType;
 
     public Medal() {
 
         this.medalId = null;
         this.medalName = "";
         this.medalDescription = "";
-        this.checkpointCount = 0;
+        this.checkpointsSum = 0;
+        this.medalType = MedalType.NONE;
     }
+
 }

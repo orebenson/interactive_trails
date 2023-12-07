@@ -10,7 +10,7 @@ public interface MedalService {
     List<Medal> getMedalsForUser(String username);
 
     void addMedalToUser(String username, String medalName);
-    void determineMedal(int checkpointSum);
+    Medal determineMedal(int checkpointSum);
 
 
 }
