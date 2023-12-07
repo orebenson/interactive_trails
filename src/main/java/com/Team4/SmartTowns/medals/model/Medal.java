@@ -11,7 +11,7 @@ public class Medal {
     private String medalName;
     private String medalDescription;
     private int checkpointsSum;
-    private MedalType medalType;
+    private String medalType;
 
     public Medal() {
 
@@ -19,7 +19,7 @@ public class Medal {
         this.medalName = "";
         this.medalDescription = "";
         this.checkpointsSum = 0;
-        this.medalType = MedalType.NONE;
+        this.medalType = null;
     }
 
 }
