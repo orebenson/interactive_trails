@@ -72,22 +72,17 @@ from user_table u
 --Adding Medals table
 create table if not exists medal_types
 (
-    id      INT             NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name    VARCHAR(255)    NOT NULL
+    medal_name              VARCHAR(25)     NOT NULL PRIMARY KEY,
+    medal_description       VARCHAR(255)    NOT NULL,
 
-)   engine = InnoDB;
+    )   engine = InnoDB;
 
-
---Creating Medals_users table
-create table if not exists medals_users
+--Creating Medal_users table
+create table if not exists medal_users
 (
-    id              BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    role_id         BIGINT      NOT NULL,
-    name            VARCHAR(45) NOT NULL,
-    medal_type_id   INT         NOT NULL,
-    checkpoints_sum INT,
-    FOREIGN KEY (role_id) REFERENCES roles_table(id),
-    FOREIGN KEY (medal_type_id) REFERENCES medal_types(id)
+    id              BIGINT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username        VARCHAR(50)     NOT NULL,
+    medal_name      VARCHAR(25)     NOT NULL,
 
     ) engine = InnoDB;
 
