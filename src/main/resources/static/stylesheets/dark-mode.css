@@ -1,4 +1,42 @@
-.dark-mode body {
-    background-color: #1a1a1a;
-    color: #ffffff;
+/* Dark Mode Colors */
+:root.dark-mode {
+    --background-colour: black;
+    --page-background-colour: #1a1a1a;
+    --text-colour: white;
+    --highlight-colour: #4d4dff;
+    --accent-colour: hsl(30, 75%, 73%);
+}
+
+body.dark-mode {
+    background-color: var(--background-colour);
+    color: var(--text-colour);
+}
+
+.page-container.dark-mode {
+    background-color: var(--page-background-colour);
+}
+
+.nav.dark-mode {
+    background-color: var(--background-colour);
+    box-shadow: 0 4px 8px var(--background-colour);
+}
+
+.nav.dark-mode ul li {
+    color: var(--page-background-colour);
+}
+
+.nav.dark-mode ul li a {
+    color: var(--page-background-colour);
+}
+
+.nav.dark-mode a:hover {
+    color: var(--highlight-colour);
+}
+
+.nav-button.dark-mode {
+    color: var(--background-colour);
+}
+
+.nav-button.dark-mode:hover {
+    color: var(--highlight-colour);
 }
