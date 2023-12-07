@@ -1,42 +1,45 @@
-/* Dark Mode Colors */
-:root.dark-mode {
-    --background-colour: black;
-    --page-background-colour: #1a1a1a;
-    --text-colour: white;
-    --highlight-colour: #4d4dff;
-    --accent-colour: hsl(30, 75%, 73%);
-}
+/* Add your dark mode styles here */
 
 body.dark-mode {
-    background-color: var(--background-colour);
-    color: var(--text-colour);
+    background-color: #1a1a1a;
+    color: white;
 }
 
-.page-container.dark-mode {
-    background-color: var(--page-background-colour);
+/* Add styles for specific elements in dark mode */
+body.dark-mode .header {
+    background-color: #1a1a1a;
+    color: white;
+    /* Add dark mode styles for the header */
 }
 
-.nav.dark-mode {
-    background-color: var(--background-colour);
-    box-shadow: 0 4px 8px var(--background-colour);
+body.dark-mode .login-page {
+    background-color: #1a1a1a;
+    color: white;
+    /* Add dark mode styles for the login page */
 }
 
-.nav.dark-mode ul li {
-    color: var(--page-background-colour);
+body.dark-mode .registration-page {
+    background-color: #1a1a1a;
+    color: white;
+    /* Add dark mode styles for the registration page */
 }
 
-.nav.dark-mode ul li a {
-    color: var(--page-background-colour);
+body.dark-mode .leaderboard-page {
+    background-color: #1a1a1a;
+    color: white;
+    /* Add dark mode styles for the leaderboard page */
 }
 
-.nav.dark-mode a:hover {
-    color: var(--highlight-colour);
+/* Additional dark mode styles for the page container */
+body.dark-mode .page-container {
+    background-color: #2d2d2d;
+    color: #c0c0c0;
 }
 
-.nav-button.dark-mode {
-    color: var(--background-colour);
+/* Additional dark mode styles for buttons */
+body.dark-mode button {
+    background-color: #404040;
+    color: #ffffff;
 }
 
-.nav-button.dark-mode:hover {
-    color: var(--highlight-colour);
-}
+/* Add more styles for other elements as needed */
