@@ -9,7 +9,7 @@ public interface MedalService {
 
 //    List<Medal> getMedalsForUser(String username);
 
-    void awardMedalToUser(String username, String medalName);
+    void awardMedalToUser(String medalName, String username);
 
 
 

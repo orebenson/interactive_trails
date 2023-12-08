@@ -49,10 +49,7 @@ public class MedalServiceImpl implements MedalService {
             return "BRONZE";
         } else {
             return "none";
-
         }
-
-
     }
 
 
