@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.util.List;
 @Repository
-public class MedalRepositoryImpl {
+public class MedalRepositoryImpl implements MedalRepository{
 
     private JdbcTemplate jdbc;
     private RowMapper<Medal> medalMapper;
@@ -18,28 +18,21 @@ public class MedalRepositoryImpl {
         setMedalMapper();
     }
 
-    public void saveMedalToUser(String medalName, String username) {
-        String sql = "INSERT INTO medal_users (username, medalName) VALUES  (?,?)";
-        jdbc.update(sql, username, medalName);
-    }
-
-
     private void setMedalMapper() {
         this.medalMapper = (ResultSet resultSet, int rowNum) -> {
             Medal medal = new Medal();
-            medal.setId(resultSet.getLong("id"));
-            medal.setName(resultSet.getString("name"));
-            medal.setMedalType(MedalType.valueOf(resultSet.getString("medal_type")));
-            medal.setCheckpointsSum(resultSet.getInt("checkpoints_sum"));
-            medal.setMedalType(MedalType.valueOf(resultSet.getString("medal_type")));
+//            medal.setId(resultSet.getLong("id"));
+//            medal.setName(resultSet.getString("name"));
+            medal.setMedalName(resultSet.getString("medal_name"));
+            medal.setMedalDescription(resultSet.getString("medal_description"));
 
             return medal;
         };
     }
-
-//    @Override
-//    public List<Medal> findMedalForUsers() {
-//        String sql = "SELECT username";
-//        return jdbc.query(sql, medalMapper);
-//    }
+    @Override
+    public void saveMedalToUser(String username, String medalName) {
+        String sql = "INSERT INTO medal_users (username, medalName) VALUES  (?,?)";
+        jdbc.update(sql, username, medalName);
+    }
 }
+

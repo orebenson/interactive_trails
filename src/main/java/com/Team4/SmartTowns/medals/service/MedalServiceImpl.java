@@ -20,14 +20,6 @@ public class MedalServiceImpl implements MedalService {
         this.medalRepository = medalRepository;
     }
 
-
-
-
-//    @Override
-//    public List<Medal> getMedalsForUser(String username) {
-//        return medalRepository.findMedalsForUsers(username);
-//    }
-
     @Override
     public void awardMedalToUser(String username) {
 
@@ -39,12 +31,12 @@ public class MedalServiceImpl implements MedalService {
         }
     }
 
-    private String determineMedal(int checkpointsSum) {
-        if (checkpointsSum >= 60) {
+    private String determineMedal(int sumCheckpoints) {
+        if (sumCheckpoints >= 60) {
             return "GOLD";
-        } else if (checkpointsSum >= 40) {
+        } else if (sumCheckpoints >= 40) {
             return "SILVER";
-        } else if (checkpointsSum >= 20) {
+        } else if (sumCheckpoints >= 20) {
             return "BRONZE";
         } else {
             return "none";

@@ -40,7 +40,6 @@ public class QRController {
         checkpointService.addCheckpointToUser(id, username);
 
         medalService.awardMedalToUser(username);
-        //add constructor above
 
 
         return ResponseEntity.ok("Checkpoint added successfully");
