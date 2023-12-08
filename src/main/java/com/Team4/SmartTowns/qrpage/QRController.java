@@ -1,6 +1,7 @@
 package com.Team4.SmartTowns.qrpage;
 
 import com.Team4.SmartTowns.checkpoints.service.CheckpointService;
+import com.Team4.SmartTowns.medals.service.MedalService;
 import com.Team4.SmartTowns.medals.service.MedalServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class QRController {
 
         checkpointService.addCheckpointToUser(id, username);
 
-        medalservice.awardmedaltouser
+        medalService.awardMedalToUser(username);
         //add constructor above
 
 

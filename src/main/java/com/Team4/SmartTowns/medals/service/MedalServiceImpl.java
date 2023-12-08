@@ -29,15 +29,14 @@ public class MedalServiceImpl implements MedalService {
 //    }
 
     @Override
-    public void awardMedalToUser(String username, String medalName) {
+    public void awardMedalToUser(String username) {
+
         List<Checkpoint> checkpointsReached = checkpointService.getCheckpointsByUsername(username);
-        //look into list.size for array for above
-
-        String medal = determineMedal(checkpointsReached);
-        //if medal != "none" then insert medal
-
-        medalRepository.saveMedal(String medalName, String username));
-
+        int sumCheckpoints = checkpointsReached.size();
+        String medalAwarded = determineMedal(sumCheckpoints);
+        if (!"none".equals(medalAwarded)) {
+        medalRepository.saveMedalToUser(medalAwarded, username);
+        }
     }
 
     private String determineMedal(int checkpointsSum) {
@@ -45,7 +44,7 @@ public class MedalServiceImpl implements MedalService {
             return "GOLD";
         } else if (checkpointsSum >= 40) {
             return "SILVER";
-        } else if (checkpointsSum >=20) {
+        } else if (checkpointsSum >= 20) {
             return "BRONZE";
         } else {
             return "none";

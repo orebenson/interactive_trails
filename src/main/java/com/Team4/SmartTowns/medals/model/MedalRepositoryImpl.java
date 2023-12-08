@@ -18,19 +18,24 @@ public class MedalRepositoryImpl {
         setMedalMapper();
     }
 
+    public void saveMedalToUser(String medalName, String username) {
+        String sql = "INSERT INTO medal_users (username, medalName) VALUES  (?,?)";
+        jdbc.update(sql, username, medalName);
+    }
 
-//    private void setMedalMapper() {
-//        this.medalMapper = (ResultSet resultSet, int rowNum) -> {
-//            Medal medal = new Medal();
-//            medal.setId(resultSet.getLong("id"));
-//            medal.setName(resultSet.getString("name"));
-//            medal.setMedalType(MedalType.valueOf(resultSet.getString("medal_type")));
-//            medal.setCheckpointsSum(resultSet.getInt("checkpoints_sum"));
-//            medal.setMedalType(MedalType.valueOf(resultSet.getString("medal_type")));
-//
-//            return medal;
-//        };
-//    }
+
+    private void setMedalMapper() {
+        this.medalMapper = (ResultSet resultSet, int rowNum) -> {
+            Medal medal = new Medal();
+            medal.setId(resultSet.getLong("id"));
+            medal.setName(resultSet.getString("name"));
+            medal.setMedalType(MedalType.valueOf(resultSet.getString("medal_type")));
+            medal.setCheckpointsSum(resultSet.getInt("checkpoints_sum"));
+            medal.setMedalType(MedalType.valueOf(resultSet.getString("medal_type")));
+
+            return medal;
+        };
+    }
 
 //    @Override
 //    public List<Medal> findMedalForUsers() {
