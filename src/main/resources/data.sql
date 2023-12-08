@@ -11,9 +11,9 @@ insert into users_roles (username, role_id)
 values ('admin', 1);
 
 --Inserting Medal Types into medal_types
--- INSERT INTO medal_types (medal_name, medal_description) VALUES ('BRONZE', 'Completed 20 checkpoints!');
--- INSERT INTO medal_types (medal_name, medal_description) VALUES ('SILVER', 'Completed 40 checkpoints!');
--- INSERT INTO medal_types (medal_name, medal_description) VALUES ('GOLD', 'Wow! Completed 60 checkpoints!');
+INSERT INTO medal_types (medal_name, medal_description) VALUES ('BRONZE', 'Completed 20 checkpoints!');
+INSERT INTO medal_types (medal_name, medal_description) VALUES ('SILVER', 'Completed 40 checkpoints!');
+INSERT INTO medal_types (medal_name, medal_description) VALUES ('GOLD', 'Wow! Completed 60 checkpoints!');
 
 --Inserting default medals into medal_users table for users based on number of checkpoints collected
 INSERT INTO medal_users (username, medal_name) VALUES ('admin', 'BRONZE');

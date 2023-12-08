@@ -5,6 +5,8 @@ drop table if exists trail_checkpoint;
 drop table if exists trail_table;
 drop table if exists roles_table;
 drop table if exists users_roles;
+drop table if exists medal_types;
+drop table if exists medal_users;
 
 create table if not exists user_table
 (

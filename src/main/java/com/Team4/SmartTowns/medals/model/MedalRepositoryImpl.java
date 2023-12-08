@@ -21,8 +21,6 @@ public class MedalRepositoryImpl implements MedalRepository{
     private void setMedalMapper() {
         this.medalMapper = (ResultSet resultSet, int rowNum) -> {
             Medal medal = new Medal();
-//            medal.setId(resultSet.getLong("id"));
-//            medal.setName(resultSet.getString("name"));
             medal.setMedalName(resultSet.getString("medal_name"));
             medal.setMedalDescription(resultSet.getString("medal_description"));
 
