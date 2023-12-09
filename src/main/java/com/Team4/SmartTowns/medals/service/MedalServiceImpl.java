@@ -32,6 +32,11 @@ public class MedalServiceImpl implements MedalService {
         }
     }
 
+    @Override
+    public List<Medal> getMedalsForUser(String username) {
+        return medalRepository.findMedalsForUser(username);
+    }
+
     private String determineMedal(int sumCheckpoints) {
         if (sumCheckpoints >= 60) {
             return "GOLD";
