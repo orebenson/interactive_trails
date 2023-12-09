@@ -28,7 +28,7 @@ public class MedalRepositoryImpl implements MedalRepository{
         };
     }
     @Override
-    public void saveMedalToUser(String username, String medalName) {
+    public void saveMedalToUser(String medalName, String username) {
         String sql = "INSERT INTO medal_users (username, medalName) VALUES  (?,?)";
         jdbc.update(sql, username, medalName);
     }
