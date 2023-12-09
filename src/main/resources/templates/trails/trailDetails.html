@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOnUZPTLVQ5aVYiUiTgiAU1_T0wnwO438&callback=initMap&libraries=&v=weekly" defer></script>
-    <script src="/scripts/map.js" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ3drUc6J041ouIRB-BoDsj3CcepeDfb0&callback=initMap&libraries=&v=weekly" async></script>
+    <script>
+        window.trailId = /*[[${trail.id}]]*/ 'defaultTrailId';
+    </script>
+    <script src="/scripts/map.js"></script>
     <title>VZTA Trails</title>
 </head>
 <body>
@@ -30,8 +33,8 @@
                 <strong>Trail Name: </strong>
                 <div class="name" th:text="${trail.name}"></div>
                 <!--Add Map Here -->
-                <!-- ... within your main container ... -->
-                <div id="map" style="height: 400px;"></div>
+                <div id="map" data-trail-id="${trail.id}" style="height: 400px;"></div>
+
 
                 <br>
                 <strong>ID: </strong>

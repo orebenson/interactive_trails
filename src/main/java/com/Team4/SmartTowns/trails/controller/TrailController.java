@@ -5,6 +5,8 @@ import com.Team4.SmartTowns.checkpoints.service.CheckpointService;
 import com.Team4.SmartTowns.trails.model.Trail;
 import com.Team4.SmartTowns.trails.service.TrailService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,9 @@ import java.util.List;
 public class TrailController {
 
     private TrailService trailService;
+    @Autowired
+    private CheckpointService CheckpointService;
+
 
     public TrailController(TrailService trailService, CheckpointService checkpointService){
 
@@ -41,6 +46,14 @@ public class TrailController {
         mvc.addObject("trail", trail);
         return mvc;
     }
+
+
+    @GetMapping("/api/trails/{trailId}/checkpoints")
+    public ResponseEntity<List<Checkpoint>> getCheckpointsByTrailId(@PathVariable Long trailId) {
+        List<Checkpoint> checkpoints = CheckpointService.getCheckpointsByTrailId(trailId);
+        return ResponseEntity.ok(checkpoints);
+    }
+
 
 
 }
