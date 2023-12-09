@@ -33,7 +33,9 @@
                 <strong>Trail Name: </strong>
                 <div class="name" th:text="${trail.name}"></div>
                 <!--Add Map Here -->
-                <div id="map" data-trail-id="${trail.id}" style="height: 400px;"></div>
+                <div id="map" th:data-trail-id="${trail.id}" style="height: 400px;"></div>
+
+
 
 
                 <br>

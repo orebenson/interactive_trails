@@ -39,10 +39,8 @@ public class TrailController {
 
     @GetMapping("/trails/{id}")
     public ModelAndView getDetails(@PathVariable Long id){
-        ModelAndView mvc = new ModelAndView("/trails/trailDetails");
+        ModelAndView mvc = new ModelAndView("trails/trailDetails");
         Trail trail = trailService.getTrailById(id);
-//        List<Checkpoint> checkpoints = checkpointService.getAllCheckpoints();
-//        mvc.addObject("checkpoints",checkpoints);
         mvc.addObject("trail", trail);
         return mvc;
     }
