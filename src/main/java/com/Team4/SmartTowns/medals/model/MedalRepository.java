@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface MedalRepository {
 
-    //award medals to users method
+    void saveMedalToUser(String username, String medalName);
 
 //    List<Medal> findMedalsForUsers(String username);
 
