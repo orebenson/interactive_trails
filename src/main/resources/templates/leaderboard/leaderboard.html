@@ -15,15 +15,25 @@
     <div class="page-container">
 
         <h1>Leaderboard</h1>
-        <p>Users ranked by checkpoints</p>
+
+        <div class="filters">
+            <label for="sort">Search user:</label>
+            <input type="text" id="searchbar" onkeyup="filterTable()" placeholder="Username...">
+            <label for="sort">Sort by:</label>
+            <select id="sort" onchange="sortTable()">
+                <option value="position">Position</option>
+                <option value="username">Username</option>
+            </select>
+        </div>
+
         <br>
 
-        <table>
+        <table id="leaderboardTable">
             <thead>
             <tr>
                 <th>Position</th>
                 <th>Username</th>
-                <th>Count</th>
+                <th>Checkpoints</th>
             </tr>
             </thead>
             <tbody>
@@ -38,5 +48,6 @@
 
     </div>
 </div>
+<script src="/scripts/leaderboardScripts.js"></script>
 </body>
 </html>
