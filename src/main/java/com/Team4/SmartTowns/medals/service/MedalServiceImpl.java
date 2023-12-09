@@ -25,6 +25,7 @@ public class MedalServiceImpl implements MedalService {
 
         List<Checkpoint> checkpointsReached = checkpointService.getCheckpointsByUsername(username);
         int sumCheckpoints = checkpointsReached.size();
+
         String medalAwarded = determineMedal(sumCheckpoints);
         if (!"none".equals(medalAwarded)) {
             medalRepository.saveMedalToUser(medalAwarded, username);
