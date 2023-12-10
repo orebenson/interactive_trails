@@ -18,7 +18,6 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
     private TrailService trailService;
     private CheckpointService checkpointService;
     private ProfileService profileService;
-
     private MedalService medalService;
 
     public DefaultsGeneratorImpl(TrailService trailService, CheckpointService checkpointService, ProfileService profileService, MedalService medalService) {
