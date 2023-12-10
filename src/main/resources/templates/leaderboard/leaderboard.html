@@ -5,6 +5,8 @@
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
     <link rel="stylesheet" href="/stylesheets/leaderboardstyles.css">
+    <link rel="stylesheet" th:href="@{/stylesheets/dark-mode.css}"/>
+    <script th:src="@{/scripts/dark-mode.js}" defer></script>
     <title>VZTA Trails</title>
 </head>
 
@@ -49,5 +51,7 @@
     </div>
 </div>
 <script src="/scripts/leaderboardScripts.js"></script>
+<script src="/scripts/dark-mode.js"></script>
+
 </body>
 </html>
