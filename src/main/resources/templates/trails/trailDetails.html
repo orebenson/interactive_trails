@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ3drUc6J041ouIRB-BoDsj3CcepeDfb0&callback=initMap&libraries=&v=weekly" async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ3drUc6J041ouIRB-BoDsj3CcepeDfb0&callback=initMap" async defer></script>
     <script>
         window.trailId = /*[[${trail.id}]]*/ 'defaultTrailId';
     </script>

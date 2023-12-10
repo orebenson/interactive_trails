@@ -7,17 +7,23 @@ function initMap() {
     const mapElement = document.getElementById('map');
     const trailId = mapElement.dataset.trailId;
 
-    const map = new google.maps.Map(mapElement, {
-        zoom: 8,
-        center: { lat: 0, lng: 0 }, // Center will be updated when we get the checkpoints
-    });
-
     fetch(`/api/trails/${trailId}/checkpoints`)
         .then(response => response.json())
         .then(checkpoints => {
+            if (checkpoints.length === 0) {
+                console.error('No checkpoints found.');
+                return;
+            }
+
+            const map = new google.maps.Map(mapElement, {
+                zoom: 8,
+                // Initially center the map on the first checkpoint
+                center: new google.maps.LatLng(checkpoints[0].coordinates[0], checkpoints[0].coordinates[1])
+            });
+
             const bounds = new google.maps.LatLngBounds();
             checkpoints.forEach(function(checkpoint) {
-                // Assuming the first element is latitude and the second is longitude
+                // Ensure that your coordinates array has the latitude at index 0 and longitude at index 1
                 const position = new google.maps.LatLng(checkpoint.coordinates[0], checkpoint.coordinates[1]);
                 bounds.extend(position);
                 new google.maps.Marker({
