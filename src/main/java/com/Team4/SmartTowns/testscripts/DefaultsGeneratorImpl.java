@@ -34,10 +34,18 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
     }
 
     public void generateTrails() {
-        Trail trail1 = createTempTrail("Cardiff Castle to Queen Street", "Cardiff", "A serene town along the shore, blending cobblestone streets with beachside cafes and historic cottages.");
-        createTempCheckpoint(trail1, 0,"Cardiff Castle", "A historic fortress in Cardiff, Wales, blending Roman, medieval, and Victorian architecture in the heart of the city.");
-        createTempCheckpoint(trail1, 1, "Checkpoint 2", "(Description of checkpoint 2)");
-        addMultipleCheckpointsToTrail(trail1, 2);
+        //Adding preset trails
+        Trail trail1 = createTempTrail("Cardiff Shopping Expedition", "Cardiff", "This trail takes you on a shopping adventure starting from Cardiff Central Railway Station, leading you to some of the best shopping destinations in the city. The journey combines a mix of high street stores, boutique shops, and unique finds, ensuring you have a delightful shopping experience.");
+        createTempCheckpoint(trail1, 0,"Cardiff Central Railway Station", "As you exit the station, head northeast toward St. Mary Street.");
+        createTempCheckpoint(trail1, 1, "St. David's Shopping Centre", "Walk along St. Mary Street and make your way to St. David's Shopping Centre, one of the largest shopping malls in the UK. Explore a variety of shops ranging from popular high street brands to specialty stores.");
+        createTempCheckpoint(trail1, 2, "Queen Street", "Exit the shopping center onto Queen Street and continue east. Queen Street is lined with shops, department stores, and cafes. Take your time to explore the diverse range of stores.");
+        createTempCheckpoint(trail1, 3, "The Royal Arcade", "Turn right onto The Hayes and enter The Royal Arcade. This charming Victorian shopping arcade is home to independent boutiques, vintage shops, and unique gift stores.");
+        createTempCheckpoint(trail1, 4, "Cardiff Market", "Head south from The Royal Arcade to Cardiff Market. This historic market offers a vibrant atmosphere with stalls selling fresh produce, local crafts, and unique finds. It's a great place to pick up some local treats.");
+        createTempCheckpoint(trail1, 5, "High Street Arcade", "From Cardiff Market, head west to St. John Street, and you'll find High Street Arcade. This hidden gem is filled with independent shops, fashion boutiques, and quirky stores.");
+        createTempCheckpoint(trail1, 6, "Morgan Arcade", "Continue west to reach Morgan Arcade, another beautiful Victorian arcade. It houses a mix of vintage shops, independent retailers, and cozy cafes.");
+        createTempCheckpoint(trail1, 7, "Capitol Shopping Centre", "Head northwest on St. Mary Street to Capitol Shopping Centre. Here, you'll find a range of shops, including fashion, electronics, and more.");
+        createTempCheckpoint(trail1, 8, "Hayes Island Snack Bar", "Have a rest at Hayes Island Snack Bar, a local institution. Relax with a cup of tea or coffee and reflect on your shopping finds.");
+        addMultipleCheckpointsToTrail(trail1, 9);
         trailService.createTrail(trail1);
 
         Trail trail2 = createTempTrail("Newport Castle to the Transporter Bridge", "Newport", "Newport, a historic town, showcases colonial charm with cobbled streets and well-preserved architecture. Situated along the river, it reflects a blend of heritage and modernity, making it a captivating destination in Wales.");
@@ -49,6 +57,12 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
         createTempCheckpoint(trail3, 0,"Mumbles", "(Description of checkpoint 1)");
         addMultipleCheckpointsToTrail(trail3, 1);
         trailService.createTrail(trail3);
+
+        Trail trail4 = createTempTrail("Cardiff Castle to Queen Street", "Cardiff", "A serene town along the shore, blending cobblestone streets with beachside cafes and historic cottages.");
+        createTempCheckpoint(trail4, 0,"Cardiff Castle", "A historic fortress in Cardiff, Wales, blending Roman, medieval, and Victorian architecture in the heart of the city.");
+        createTempCheckpoint(trail4, 1, "Checkpoint 2", "(Description of checkpoint 2)");
+        addMultipleCheckpointsToTrail(trail4, 2);
+        trailService.createTrail(trail4);
 
     }
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <link rel="stylesheet" href="/stylesheets/traildetails.css">
     <link rel="stylesheet" th:href="@{/stylesheets/dark-mode.css}"/>
     <script th:src="@{/scripts/dark-mode.js}" defer></script>
     <title>VZTA Trails</title>
@@ -19,25 +20,25 @@
             <br>
 
             <div class="trail-container">
-                <!--      <div class="trail-picture">-->
-                <!--        <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">-->
-                <!--          <img class="trail-image" src="/Images/trail1Placeholder.jpg"-->
-                <!--               alt="picture outlining the trail">-->
-                <!--        </a>-->
-                <!--      </div>-->
+                      <div class="trail-picture">
+                        <a class="trail-image-container" href="../../static/images/trail1Placeholder.jpg">
+                          <img class="trail-image" src="/Images/trail1Placeholder.jpg"
+                               alt="Feature picture/map">
+                        </a>
+                      </div>
 
 
                 <strong>Trail Name: </strong>
                 <div class="name" th:text="${trail.name}"></div>
                 <br>
-                <strong>ID: </strong>
-                <div class="trailId" th:text="${trail.id}"></div>
+                <strong>ID: </strong> <div class="trailId" th:text="${trail.id}"></div>
                 <strong>Location: </strong>
                 <div class="location" th:text="${trail.location}"></div>
                 <strong>Description: </strong>
                 <div class="trailDescription" th:text="${trail.description}"></div>
+                <br>
                 <strong>Checkpoints: </strong>
-                <ul>
+                <ul class="trail-checkpoints">
                     <div th:each="checkpoint: ${trail.checkpoints}">
                         <li>
 <!--                            <div th:text="${checkpoint.id}"></div>-->
@@ -51,5 +52,8 @@
         </main>
     </div>
 </div>
+
+<script src="/scripts/dark-mode.js"></script>
+
 </body>
 </html>
