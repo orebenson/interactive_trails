@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ3drUc6J041ouIRB-BoDsj3CcepeDfb0&callback=initMap" async defer></script>
+
     <script>
         window.trailId = /*[[${trail.id}]]*/ 'defaultTrailId';
     </script>
     <script src="/scripts/map.js"></script>
     <link rel="stylesheet" th:href="@{/stylesheets/dark-mode.css}"/>
     <script th:src="@{/scripts/dark-mode.js}" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZ3drUc6J041ouIRB-BoDsj3CcepeDfb0&callback=initMap" async defer></script>
+
     <title>VZTA Trails</title>
 </head>
 <body>
@@ -36,9 +38,6 @@
                 <div class="name" th:text="${trail.name}"></div>
                 <!--Add Map Here -->
                 <div id="map" th:data-trail-id="${trail.id}" style="height: 400px;"></div>
-
-
-
 
                 <br>
                 <strong>ID: </strong>
