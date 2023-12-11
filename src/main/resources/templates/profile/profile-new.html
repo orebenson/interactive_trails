@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link th:replace="~{/fragments/header :: bootstrap-css}"/>
     <link th:replace="~{/fragments/header :: mainstyles}"/>
+    <link rel="stylesheet" th:href="@{/stylesheets/dark-mode.css}"/>
+    <script th:src="@{/scripts/dark-mode.js}" defer></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/profilecheckpointstyles.css" />
     <title>VZTA Trails</title>
 </head>
@@ -20,6 +22,16 @@
         <p th:text="'Address 2: ' + ${profile.address2}"></p>
         <p th:text="'City: ' + ${profile.city}"></p>
         <p th:text="'Zip Code: ' + ${profile.zipCode}"></p>
+
+
+        <h2>Medals</h2>
+        <ul class="medal-container" th:if="${not #lists.isEmpty(userMedals)}">
+            <li th:each="medal : ${userMedals}">
+                <p th:text="'Medal: ' + ${medal.medalName}"></p>
+                <p th:text="'Description: ' + ${medal.medalDescription}"></p>
+            </li>
+        </ul>
+        <p th:if="${#lists.isEmpty(userMedals)}">No medals</p>
 
         <h2>Started Trails</h2>
         <ul class="trail-container" th:if="${not #lists.isEmpty(startedTrails)}">
