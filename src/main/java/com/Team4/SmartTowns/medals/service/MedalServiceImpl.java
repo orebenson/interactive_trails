@@ -15,7 +15,7 @@ public class MedalServiceImpl implements MedalService {
     private MedalRepository medalRepository;
     private CheckpointService checkpointService;
 
-    public MedalServiceImpl(CheckpointService checkpointService, MedalRepository medalRepository){
+    public MedalServiceImpl(CheckpointService checkpointService, MedalRepository medalRepository) {
         this.checkpointService = checkpointService;
         this.medalRepository = medalRepository;
     }
@@ -26,28 +26,43 @@ public class MedalServiceImpl implements MedalService {
         List<Checkpoint> checkpointsReached = checkpointService.getCheckpointsByUsername(username);
         int sumCheckpoints = checkpointsReached.size();
 
-        String medalAwarded = determineMedal(sumCheckpoints);
-        if (!"none".equals(medalAwarded)) {
-            medalRepository.saveMedalToUser(medalAwarded, username);
+//        String medalAwarded = determineMedal(sumCheckpoints);
+//        if (!"none".equals(medalAwarded)) {
+        if (sumCheckpoints >= 20) {
+            medalRepository.saveMedalToUser("BRONZE - 20 Checkpoints", username);
         }
+
+        if (sumCheckpoints >= 40) {
+            medalRepository.saveMedalToUser("SILVER - 40 Checkpoints", username);
+        }
+//
+        if (sumCheckpoints >= 60) {
+            medalRepository.saveMedalToUser("GOLD - 60 Checkpoints", username);
+        }
+//
+//            medalRepository.saveMedalToUser(medalAwarded, username);
+
     }
+
 
     @Override
     public List<Medal> getMedalsForUser(String username) {
         return medalRepository.findMedalsForUser(username);
     }
 
-    private String determineMedal(int sumCheckpoints) {
-        if (sumCheckpoints >= 60) {
-            return "GOLD";
-        } else if (sumCheckpoints >= 40) {
-            return "SILVER";
-        } else if (sumCheckpoints >= 20) {
-            return "BRONZE";
-        } else {
-            return "none";
-        }
-    }
+
+//        this method has been deprecated as shown in the awardMedalToUser() method.
+//        private String determineMedal ( int sumCheckpoints){
+//            if (sumCheckpoints >= 60) {
+//                return "GOLD";
+//            } else if (sumCheckpoints >= 40) {
+//                return "SILVER";
+//            } else if (sumCheckpoints >= 20) {
+//                return "BRONZE";
+//            } else {
+//                return "none";
+//            }
+//        }
 
 
 }
