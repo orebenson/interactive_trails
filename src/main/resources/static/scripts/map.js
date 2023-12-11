@@ -23,7 +23,7 @@ function initMap() {
 
             const bounds = new google.maps.LatLngBounds();
             checkpoints.forEach(function(checkpoint) {
-                // Ensure that your coordinates array has the latitude at index 0 and longitude at index 1
+
                 const position = new google.maps.LatLng(checkpoint.coordinates[0], checkpoint.coordinates[1]);
                 bounds.extend(position);
                 new google.maps.Marker({

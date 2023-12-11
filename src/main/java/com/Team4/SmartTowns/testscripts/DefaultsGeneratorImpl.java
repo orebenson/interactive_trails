@@ -32,9 +32,33 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
 
     public void generateTrails() {
         Trail trail1 = createTempTrail("Cardiff Castle to Queen Street", "Cardiff", "A serene town along the shore, blending cobblestone streets with beachside cafes and historic cottages.");
+        //I added some preset checkpoints in order to show the map working, please don't delete - Gary
         createTempCheckpoint(trail1, 0,"Cardiff Castle", "A historic fortress in Cardiff, Wales, blending Roman, medieval, and Victorian architecture in the heart of the city.", 51.4822313, -3.1837516);
-        createTempCheckpoint(trail1, 1, "Checkpoint 2", "(Description of checkpoint 2)", 0 ,0);
-        addMultipleCheckpointsToTrail(trail1, 2);
+        createTempCheckpoint(trail1, 1, "Cardiff Market", "A bustling marketplace known for its vibrant atmosphere and local produce, offering a blend of Welsh culture and international goods.", 51.4803, -3.1805);
+        createTempCheckpoint(trail1, 2, "Bute Park", "A vast expanse of landscaped gardens and parkland, stretching along the River Taff with recreational paths and historical monuments.", 51.4847, -3.1822);
+        createTempCheckpoint(trail1, 3, "Principality Stadium", "Iconic sports venue hosting major events with a retractable roof, known for its electrifying atmosphere.", 51.4782, -3.1828);
+        createTempCheckpoint(trail1, 4, "Cardiff Bay", "A picturesque waterfront with an array of dining and entertainment options, and home to the Wales Millennium Centre.", 51.4636, -3.1648);
+        createTempCheckpoint(trail1, 5, "Millennium Walkway", "A scenic walking route alongside the River Taff, linking many of Cardiff's key attractions.", 51.4763, -3.1773);
+        createTempCheckpoint(trail1, 6, "Llandaff Cathedral", "An architectural gem and a place of worship, with a history stretching back to the Normans.", 51.4995, -3.2184);
+        createTempCheckpoint(trail1, 7, "Roath Park", "A classic Victorian park with a beautiful lake, conservatory, and botanical gardens.", 51.5017, -3.1651);
+        createTempCheckpoint(trail1, 8, "St Fagans National Museum of History", "An open-air museum chronicling Welsh history, culture, and architecture.", 51.4868, -3.2727);
+        createTempCheckpoint(trail1, 9, "Castell Coch", "A 19th-century Gothic Revival castle built above the village of Tongwynlais.", 51.5358, -3.2547);
+        createTempCheckpoint(trail1, 10, "Cardiff University", "A prestigious and historic seat of learning, known for its distinctive architecture.", 51.4888, -3.1788);
+        createTempCheckpoint(trail1, 11, "The Cardiff Story Museum", "A museum that tells the tale of the city's history, located in the old library building.", 51.4800, -3.1800);
+        createTempCheckpoint(trail1, 12, "Mermaid Quay", "A bustling shopping and dining area on the waterfront of Cardiff Bay.", 51.4638, -3.1639);
+        createTempCheckpoint(trail1, 13, "The Senedd", "The home of Welsh politics, with its innovative architecture and public galleries.", 51.4630, -3.1635);
+        createTempCheckpoint(trail1, 14, "Cardiff International White Water", "An exciting, Olympic standard white water rafting centre in Cardiff Bay.", 51.4674, -3.1667);
+        createTempCheckpoint(trail1, 15, "Pierhead Building", "An iconic red-brick building that stands as a symbol of Wales' commercial and industrial past.", 51.4631, -3.1646);
+        createTempCheckpoint(trail1, 16, "Techniquest", "A hands-on science discovery centre, perfect for inquisitive minds of all ages.", 51.4645, -3.1645);
+        createTempCheckpoint(trail1, 17, "Cardiff Helicopter Rides", "A unique way to see the city from above, offering breathtaking views.", 51.4651, -3.1475);
+        createTempCheckpoint(trail1, 18, "Wales National Ice Rink", "An indoor rink providing a venue for ice sports and public skating sessions.", 51.4780, -3.1767);
+        createTempCheckpoint(trail1, 19, "Cardiff City Hall", "An impressive Edwardian building, a center of local government and civic events.", 51.4818, -3.1767);
+        createTempCheckpoint(trail1, 20, "National Museum Cardiff", "A cultural institution with extensive collections of art, geology, and natural history.", 51.4859, -3.1773);
+
+
+
+
+        //addMultipleCheckpointsToTrail(trail1, 2);
         trailService.createTrail(trail1);
 
         Trail trail2 = createTempTrail("Newport Castle to the Transporter Bridge", "Newport", "Newport, a historic town, showcases colonial charm with cobbled streets and well-preserved architecture. Situated along the river, it reflects a blend of heritage and modernity, making it a captivating destination in Wales.");
