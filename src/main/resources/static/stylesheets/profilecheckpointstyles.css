@@ -22,11 +22,11 @@
 }
 
 .collected {
-    background-color: hsl(12, 100%, 50%);
+    background-color: hsl(132, 40%, 37%);
 }
 
 .not-collected {
-    background-color: var(--highlight-colour);
+    background-color: hsl(16, 15%, 40%);
 }
 
 .checkpoint-card p {
