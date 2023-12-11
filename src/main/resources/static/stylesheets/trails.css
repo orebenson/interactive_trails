@@ -1,13 +1,29 @@
 
-.trail-list ul li {
+.trail-list {
     list-style-type: none;
 
 }
 
 .trail-container{
-    display:flex;
+    display: flex;
     /*border: 10px solid red;*/
     justify-content: space-between;
+
+}
+.trail-details {
+    display: flex;
+    /*border: 1px solid blue;*/
+    border-radius: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    flex:0.5;
+    justify-content: space-between;
+    /*margin-outside: 10px;*/
+    padding: 1rem;
+    box-shadow: 0 0 5px 5px rgba(0, 140, 140, 0.5);
+    transform: scale(0.95);
+
 }
 
 .trail-text{
