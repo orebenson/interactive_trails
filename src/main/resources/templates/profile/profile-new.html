@@ -40,18 +40,18 @@
 
                 <div class="progress">
                     <div class="progress-bar" role="progressbar"
-                         th:style="'width: ' + ${percentages[trail.name]} + '%'">
+                         th:style="'width: ' + ${percentages.get(trail.id)} + '%'">
 <!--                         th:style="'width: calc((' + ${#lists.size(checkpointsByTrail[trail.name])} + '/' + ${#lists.size(trail.checkpoints)} + ') * 100) %'"-->
 
-                        <span th:text="'Progress: ' + ${#lists.size(checkpointsByTrail[trail.name])} + '/' + ${#lists.size(trail.checkpoints)}"></span>
+                        <span th:text="'Progress: ' + ${#lists.size(checkpointsIdsByTrail.get(trail.id))} + '/' + ${#lists.size(trail.checkpoints)}"></span>
                     </div>
                 </div>
 
                 <ul class="checkpoints-container">
                     <li th:each="checkpoint : ${trail.checkpoints}">
-                        <div th:class="${#lists.contains(checkpointsByTrail[trail.name], checkpoint)} ? 'checkpoint-card collected' : 'checkpoint-card not-collected'">
+                        <div th:class="${#lists.contains(checkpointsIdsByTrail.get(trail.id), checkpoint.id)} ? 'checkpoint-card collected' : 'checkpoint-card not-collected'">
                             <p th:text="'Checkpoint Name: ' + ${checkpoint.name}"></p>
-                            <p th:text="'Collected: ' + (${#lists.contains(checkpointsByTrail[trail.name], checkpoint)} ? 'Yes' : 'No')"></p>
+                            <p th:text="'Collected: ' + (${#lists.contains(checkpointsIdsByTrail.get(trail.id), checkpoint.id)} ? 'Yes' : 'No')"></p>
                         </div>
                     </li>
                 </ul>

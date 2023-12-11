@@ -9,9 +9,7 @@ import com.Team4.SmartTowns.trails.model.Trail;
 import com.Team4.SmartTowns.trails.service.TrailService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class DefaultsGeneratorImpl implements DefaultsGenerator {
@@ -59,7 +57,6 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
         createTempCheckpoint(trail1, 17, "Cardiff Helicopter Rides", "A unique way to see the city from above, offering breathtaking views.", 51.4651, -3.1475);
         createTempCheckpoint(trail1, 18, "Wales National Ice Rink", "An indoor rink providing a venue for ice sports and public skating sessions.", 51.4780, -3.1767);
         createTempCheckpoint(trail1, 19, "Cardiff City Hall", "An impressive Edwardian building, a center of local government and civic events.", 51.4818, -3.1767);
-        createTempCheckpoint(trail1, 20, "National Museum Cardiff", "A cultural institution with extensive collections of art, geology, and natural history.", 51.4859, -3.1773);
         trailService.createTrail(trail1);
 
         Trail trail2 = createTempTrail("Newport Castle to the Transporter Bridge", "Newport", "Newport, a historic town, showcases colonial charm with cobbled streets and well-preserved architecture. Situated along the river, it reflects a blend of heritage and modernity, making it a captivating destination in Wales.");
@@ -91,7 +88,7 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
     private void addMultipleCheckpointsToTrail(Trail trail,int start) {
         for (int i = start; i < 20; i++) {
             int j = i+1;
-            createTempCheckpoint(trail, i,"Checkpoint " + j, "(Description of checkpoint " + j + ")", 0, 0);
+            createTempCheckpoint(trail,i,"Checkpoint " + j, "(Description of checkpoint " + j + ")", 0, 0);
         }
     }
 
@@ -112,11 +109,18 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
     private void createUserWithCheckpoints(int noOfCheckpoints, String userName, String password, String email, String address, String address2, String city, String zipCode) {
         Profile tempProfile = new Profile(userName, password, email, address, address2, city, zipCode, new ArrayList<>());
         String username = profileService.addProfile(tempProfile);
+        // assign a random number of checkpoints to each user
         Random random = new Random();
-        int checkpointsToAdd = random.nextInt(noOfCheckpoints) + 1;
+        int checkpointsToAdd = random.nextInt(noOfCheckpoints) + 1; //random number of checkpoints to add
+        List<Long> uniqueCheckpointIds = new ArrayList<>();
         for (int j = 0; j < checkpointsToAdd; j++) {
-            Long checkpointId = random.nextLong(noOfCheckpoints) + 1;
-            checkpointService.addCheckpointToUser(checkpointId, username);
+            Long checkpointId = (long) random.nextInt(noOfCheckpoints) + 1 ; // random checkpoint id
+            if(!uniqueCheckpointIds.contains(checkpointId)){
+                uniqueCheckpointIds.add(checkpointId);
+            }
+        }
+        for (Long id : uniqueCheckpointIds) {
+            checkpointService.addCheckpointToUser(id, username);
         }
         medalService.awardMedalToUser(username);
     }
@@ -131,19 +135,14 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
     }
 
     private void createTempCheckpoint(Trail trail, int pos, String name, String description, double latitude, double longitude) {
-        // some validation, add checkpoint or get existing one.
-        Checkpoint temp;
-        if (pos < trail.getCheckpoints().size()) {
-            temp = trail.getCheckpoints().get(pos);
-        } else {
-            temp = new Checkpoint();
-            trail.getCheckpoints().add(temp);
-        }
-
+        Checkpoint temp = new Checkpoint();
         temp.setName(name);
         temp.setDescription(description);
-        //I'm setting latitude and longitude to be the coordinates here.
         temp.setCoordinates(new double[]{latitude, longitude});
+
+        List<Checkpoint> tempList = trail.getCheckpoints();
+        tempList.set(pos, temp);
+        trail.setCheckpoints(tempList);
     }
 
 }

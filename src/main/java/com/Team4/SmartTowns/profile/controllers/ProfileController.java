@@ -53,30 +53,38 @@ public class ProfileController {
         Profile profile = profileService.getProfile(loggedInUser);
         profile.setPassword("");
 
-        // Calculate progress for each trail
-        Map<String, List<Checkpoint>> checkpointsByTrail = new HashMap<>();
-        for (Trail trail : startedTrails) {
-            List<Checkpoint> collectedCheckpoints = new ArrayList<>();
-            for (Checkpoint checkpoint : trail.getCheckpoints()) {
-                if (profile.getCheckpoints().contains(checkpoint)) {
-                    collectedCheckpoints.add(checkpoint);
-                }
-            }
-            checkpointsByTrail.put(trail.getName(), collectedCheckpoints);
+        // create list of checkpoint ids that the profile has collected
+        List<Long> profileCheckpointIds = new ArrayList<>();
+        for (Checkpoint checkpoint : profile.getCheckpoints()){
+            profileCheckpointIds.add(checkpoint.getId());
         }
 
-        Map<String, Float> percentages = new HashMap<>();
-        for(Trail trail: startedTrails){
-            float percentage = (checkpointsByTrail.get(trail.getName()).size() * 100)/trail.getCheckpoints().size();
-            percentages.put(trail.getName(), percentage);
+        // calculate progress for each trail, creating a map of collected checkpoints for each trail
+        Map<Long, List<Long>> checkpointIdsByTrail = new HashMap<>();
+        for (Trail trail : startedTrails) {
+            List<Long> collectedCheckpoints = new ArrayList<>();
+            for (Checkpoint checkpoint : trail.getCheckpoints()) {
+                if (profileCheckpointIds.contains(checkpoint.getId())) {
+                    collectedCheckpoints.add(checkpoint.getId());
+                }
+            }
+            checkpointIdsByTrail.put(trail.getId(), collectedCheckpoints);
         }
-// get the users medals
+
+        // calculate the percentages of each trail completed
+        Map<Long, Float> percentages = new HashMap<>();
+        for(Trail trail: startedTrails){
+            float percentage = (checkpointIdsByTrail.get(trail.getId()).size() * 100)/trail.getCheckpoints().size();
+            percentages.put(trail.getId(), percentage);
+        }
+
+        // get the users medals
         List<Medal> userMedals = medalService.getMedalsForUser(loggedInUser);
         mav.addObject("userMedals", userMedals);
         mav.addObject("percentages", percentages);
         mav.addObject("profile", profile);
         mav.addObject("startedTrails", startedTrails);
-        mav.addObject("checkpointsByTrail", checkpointsByTrail);
+        mav.addObject("checkpointsIdsByTrail", checkpointIdsByTrail);
 
         return mav;
     }
