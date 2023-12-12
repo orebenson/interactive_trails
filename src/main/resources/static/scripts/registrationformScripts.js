@@ -60,10 +60,10 @@ const checkUsername = function () {
 
     if (!isRequired(usernameValue)) {
         showError(usernameInput, 'Username cannot be empty');
-        return { valid: false, message: 'Username cannot be empty' }
+        return { valid: false, message: 'Username cannot be empty' };
     } else if (!isBetween(usernameValue.length, min, max)) {
         showError(usernameInput, `Username must be between ${min} and ${max} characters`)
-        return { valid: false, message: `Username must be between ${min} and ${max} characters`}
+        return { valid: false, message: `Username must be between ${min} and ${max} characters`};
     } else {
         showSuccess(usernameInput);
         return { valid: true, message: '' };
@@ -99,6 +99,7 @@ const checkPassword = function () {
 
     if (!isRequired(passwordValue)) {
         showError(passwordValueInput, 'Password cannot be empty');
+        return { valid: false, message: 'Password cannot be empty'};
         } else {
         showSuccess(passwordValueInput)
         return { valid: true, message: '' };
@@ -114,6 +115,7 @@ const checkAddress = function () {
 
     if (!isRequired(addressValue)) {
         showError(addressValueInput, 'Address cannot be empty');
+        return { valid: false, message: 'Address cannot be empty'};
     } else {
         showSuccess(addressValueInput)
         return { valid: true, message: '' };
@@ -129,6 +131,7 @@ const checkCity = function () {
 
     if (!isRequired(cityValue)) {
         showError(cityValueInput, 'City cannot be empty');
+        return { valid: false, message: 'City cannot be empty'};
     } else {
         showSuccess(cityValueInput)
         return { valid: true, message: '' };
@@ -144,6 +147,7 @@ const checkZipcode = function () {
 
     if (!isRequired(zipcodeValue)) {
         showError(zipcodeValueInput, 'Postcode cannot be empty');
+        return { valid: false, message: 'Postcode cannot be empty'};
     } else {
         showSuccess(zipcodeValueInput)
         return { valid: true, message: '' };
@@ -169,7 +173,7 @@ document.getElementById('registrationForm').addEventListener('submit', function 
 
         form.submit();
     } else {
-        return console.log("form not valid");
+        return null;
     }
 
 
