@@ -14,7 +14,8 @@
 
 .checkpoint-card {
     /*flex: 0 0 auto;*/
-    width: 150px;
+    width: 200px;
+    min-height: 200px;
     margin-right: 1rem;
     padding: 1rem;
     border-radius: 0.5rem;

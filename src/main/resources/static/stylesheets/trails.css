@@ -1,7 +1,8 @@
 
 .trail-list {
     list-style-type: none;
-
+    padding: 0;
+    margin: 0;
 }
 
 .trail-container{
@@ -21,20 +22,24 @@
     justify-content: space-between;
     /*margin-outside: 10px;*/
     padding: 1rem;
-    box-shadow: 0 0 5px 5px rgba(0, 140, 140, 0.5);
+    /*box-shadow: 0 0 5px 5px rgba(0, 140, 140, 0.5);*/
     transform: scale(0.95);
 
 }
 
 .trail-text{
     display: flex;
-    border: 5px solid purple;
+    /*border: 5px solid purple;*/
     border-radius: 10px;
     flex-direction: column;
     flex-wrap: wrap;
     padding: 1rem;
     align-items: flex-start;
     flex:auto;
+}
+
+.trail-picture {
+    padding-right: 1rem;
 }
 
 .trail-image-container{
@@ -57,6 +62,6 @@ img {
 }
 
 .trail-image-container img:hover{
-    box-shadow: 0 0 10px 10px rgba(0, 140, 140, 0.5);
+    /*box-shadow: 0 0 10px 10px rgba(0, 140, 140, 0.5);*/
     transform: scale(0.95);
 }

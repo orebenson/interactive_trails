@@ -20,7 +20,7 @@
 
 <header th:fragment="navbar" class="nav">
     <ul>
-        <li><button id="darkModeToggle">theme</button></li>
+
         <li><a th:href="@{/}">Home</a></li>
         <li><a th:href="@{/trails}">Trails</a></li>
         <li><a th:href="@{/leaderboard}">Leaderboard</a></li>
@@ -54,9 +54,7 @@
                 <button class="nav-button" type="submit">Login</button>
             </form>
         </li>
-
-
-
+        <li><button class="nav-button" id="darkModeToggle">theme</button></li>
     </ul>
 
 </header>
