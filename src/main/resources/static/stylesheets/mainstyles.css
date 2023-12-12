@@ -26,6 +26,7 @@ body {
     font-family: Arial;
     font-size: 1.4rem;
     background-color: var(--background-colour);
+    /*background-color: var(--page-background-colour);*/
     color: var(--text-colour);
 }
 
@@ -38,6 +39,7 @@ body {
 }
 
 .page-container {
+    z-index: 1;
     width: 100%;
     height: fit-content;
     min-height: 100%;
@@ -51,13 +53,31 @@ body {
     border-radius: 0.5rem;
 }
 
+.list-item {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    border: 0.3rem solid var(--background-colour);
+    border-radius: 0.2rem;
+}
+
 @media (max-width: 780px) {
     .page-container {
         margin-top: calc((var(--nav-height) * 2) + 2rem);
     }
 }
 
+.filters {
+    display: flex;
+    flex-direction: column;
+}
+
+.filters item {
+    padding-inline: 0.5rem;
+}
+
 .nav {
+    z-index: 1000;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -68,10 +88,6 @@ body {
     padding: 0.3rem;
     padding-inline: 1rem;
     box-shadow: 0 4px 8px var(--background-colour);
-}
-
-.nav img {
-    height: var(--nav-height);
 }
 
 .nav ul {
@@ -134,6 +150,32 @@ h2 {
 
 h3 {
     font-size: 1.3rem;
+}
+
+input, select{
+    padding-inline: 0.3rem;
+    border: 1px solid var(--text-colour);
+    border-radius: 0.3rem;
+}
+
+button {
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--highlight-colour);
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-colour);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--highlight-colour);
 }
 
 

@@ -60,14 +60,52 @@ public class DefaultsGeneratorImpl implements DefaultsGenerator {
         trailService.createTrail(trail1);
 
         Trail trail2 = createTempTrail("Newport Castle to the Transporter Bridge", "Newport", "Newport, a historic town, showcases colonial charm with cobbled streets and well-preserved architecture. Situated along the river, it reflects a blend of heritage and modernity, making it a captivating destination in Wales.");
-        createTempCheckpoint(trail2, 0,"Newport Castle", "(Description of checkpoint 1)" ,0 ,0);
-        addMultipleCheckpointsToTrail(trail2, 1);
+        createTempCheckpoint(trail2, 0, "Newport Castle", "A historic castle in Newport with a rich colonial history.", 51.5877, -2.9984);
+        createTempCheckpoint(trail2, 1, "Riverfront Theatre and Arts Centre", "An iconic cultural venue hosting a variety of performances and exhibitions.", 0,0);
+        createTempCheckpoint(trail2, 2, "Belle Vue Park", "A picturesque public park featuring formal gardens, a conservatory, and a cafe.", 0,0);
+        createTempCheckpoint(trail2, 3, "St. Woolos Cathedral", "A magnificent cathedral with a history dating back to the 6th century.", 0,0);
+        createTempCheckpoint(trail2, 4, "Friars Walk Shopping Centre", "A modern shopping destination with a range of retail stores and dining options.", 0,0);
+        createTempCheckpoint(trail2, 5, "Newport Market", "A bustling indoor market offering a variety of fresh produce, local crafts, and more.", 0,0);
+        createTempCheckpoint(trail2, 6, "The River Usk", "Enjoy a scenic walk along the banks of the River Usk with beautiful views.", 0,0);
+        createTempCheckpoint(trail2, 7, "Victoria Park", "A charming park with green spaces, playgrounds, and recreational facilities.", 0,0);
+        createTempCheckpoint(trail2, 8, "Transporter Bridge Visitors Centre", "Learn about the history of the iconic Transporter Bridge at the visitors center.", 0,0);
+        createTempCheckpoint(trail2, 9, "Newport Wetlands Reserve", "Explore a nature reserve with diverse wildlife and birdwatching opportunities.", 0,0);
+        createTempCheckpoint(trail2, 10, "George Street Bridge", "Cross the river via George Street Bridge and enjoy panoramic views.", 0,0);
+        createTempCheckpoint(trail2, 11, "Newport Stadium", "A sports stadium hosting various events and activities.", 0,0);
+        createTempCheckpoint(trail2, 12, "Tredegar House", "Visit a historic mansion surrounded by beautiful gardens and parkland.", 0,0);
+        createTempCheckpoint(trail2, 13, "Ridgeway Golf Club", "Play a round of golf at this scenic golf club.", 0,0);
+        createTempCheckpoint(trail2, 14, "Caerleon Roman Fortress and Baths", "Discover the well-preserved remains of a Roman fortress and baths.", 0,0);
+        createTempCheckpoint(trail2, 15, "Caerleon Amphitheatre", "Explore the ancient amphitheater, once used for gladiator contests.", 0,0);
+        createTempCheckpoint(trail2, 16, "Isca Augusta", "Visit the archaeological site of the Roman legionary fortress.", 0,0);
+        createTempCheckpoint(trail2, 17, "Fourteen Locks Canal Centre", "Learn about the canal system and its historical significance.", 0,0);
+        createTempCheckpoint(trail2, 18, "Rogerstone Railway Tunnel", "Walk or cycle through the historic railway tunnel.", 0,0);
+        createTempCheckpoint(trail2, 19, "Newport Transporter Bridge", "Reach the final checkpoint and marvel at the engineering feat of the iconic Transporter Bridge.", 0,0);
         trailService.createTrail(trail2);
 
+
         Trail trail3 = createTempTrail("Swansea Mumbles to Gower", "Swansea", "Nestled along the scenic coastline, Swansea is a coastal haven known for its quaint beauty. With sandy beaches, a bustling marina, and a rich maritime history, the town offers a serene escape by the sea.");
-        createTempCheckpoint(trail3, 0,"Mumbles", "(Description of checkpoint 1)",0 ,0);
-        addMultipleCheckpointsToTrail(trail3, 1);
+        createTempCheckpoint(trail3, 0, "Mumbles", "A charming seaside district in Swansea.", 0, 0);
+        createTempCheckpoint(trail3, 1, "Oystermouth Castle", "Explore the historic ruins of Oystermouth Castle, offering panoramic views of the coast.", 0, 0);
+        createTempCheckpoint(trail3, 2, "Swansea Bay Promenade", "Take a leisurely stroll along the scenic promenade of Swansea Bay with breathtaking sea views.", 0, 0);
+        createTempCheckpoint(trail3, 3, "Verdi's Cafe", "Enjoy a coffee or meal at Verdi's, a popular cafe overlooking the bay.", 0, 0);
+        createTempCheckpoint(trail3, 4, "Mumbles Pier", "Visit Mumbles Pier, an iconic landmark with amusements and stunning views.", 0, 0);
+        createTempCheckpoint(trail3, 5, "Bracelet Bay", "Relax at Bracelet Bay, a picturesque cove with rocky cliffs and tidal pools.", 0, 0);
+        createTempCheckpoint(trail3, 6, "Langland Bay", "A beautiful sandy beach with excellent surfing conditions and coastal walks.", 0, 0);
+        createTempCheckpoint(trail3, 7, "Caswell Bay", "Explore Caswell Bay, known for its golden sands and scenic surroundings.", 0, 0);
+        createTempCheckpoint(trail3, 8, "Bishop's Wood", "Wander through Bishop's Wood, a tranquil woodland area with diverse flora.", 0, 0);
+        createTempCheckpoint(trail3, 9, "Pennard Castle", "Discover the medieval ruins of Pennard Castle on the Gower Peninsula.", 0, 0);
+        createTempCheckpoint(trail3, 10, "Three Cliffs Bay", "Visit the stunning Three Cliffs Bay, known for its three limestone cliffs and sandy shores.", 0, 0);
+        createTempCheckpoint(trail3, 11, "Pobbles Bay", "A secluded beach with rugged cliffs, perfect for a quiet escape.", 0, 0);
+        createTempCheckpoint(trail3, 12, "Culver Hole", "Explore Culver Hole, a mysterious stone structure built into the cliffs.", 0, 0);
+        createTempCheckpoint(trail3, 13, "Rhossili Bay", "Enjoy the vast sandy expanse of Rhossili Bay, backed by dramatic cliffs.", 0, 0);
+        createTempCheckpoint(trail3, 14, "Worm's Head", "Hike to Worm's Head, a tidal island with unique rock formations and wildlife.", 0, 0);
+        createTempCheckpoint(trail3, 15, "National Trust Visitor Centre", "Learn about the Gower Peninsula's natural and cultural heritage at the Visitor Centre.", 0, 0);
+        createTempCheckpoint(trail3, 16, "Llangennith Beach", "A popular beach for water sports enthusiasts and those seeking wide-open spaces.", 0, 0);
+        createTempCheckpoint(trail3, 17, "Burry Holms", "Explore the ancient burial mound at Burry Holms with views of the surrounding coastline.", 0, 0);
+        createTempCheckpoint(trail3, 18, "Whiteford Sands", "Relax at Whiteford Sands, a remote and unspoiled beach on the Gower Peninsula.", 0, 0);
+        createTempCheckpoint(trail3, 19, "Weobley Castle", "Visit Weobley Castle, a medieval fortified manor house offering historic charm and panoramic views.", 0, 0);
         trailService.createTrail(trail3);
+
 
         Trail trail4 = createTempTrail("Cardiff Shopping Expedition", "Cardiff", "This trail takes you on a shopping adventure starting from Cardiff Central Railway Station, leading you to some of the best shopping destinations in the city. The journey combines a mix of high street stores, boutique shops, and unique finds, ensuring you have a delightful shopping experience.");
         createTempCheckpoint(trail4, 0,"Cardiff Central Railway Station", "As you exit the station, head northeast toward St. Mary Street.",0,0);

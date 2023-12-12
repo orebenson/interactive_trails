@@ -1,5 +1,9 @@
 table {
     width: 60%;
+    justify-content: center;
+    margin-inline: auto;
+    border: 0.3rem solid var(--background-colour);
+    border-radius: 0.2rem;
 }
 
 th, td {
@@ -8,7 +12,3 @@ th, td {
     text-align: left;
 }
 
-.filters {
-    display: flex;
-    flex-direction: row;
-}

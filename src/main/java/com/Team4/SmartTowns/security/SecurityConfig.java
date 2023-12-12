@@ -40,23 +40,35 @@ public class SecurityConfig {
 
     public static final String[] ENDPOINTS_WHITELIST = {
             // all users can see all pages currently, for testing purposes
-            "/**",
+//            "/**",
             //
-            "/stylesheets/**",
             "/",
-            "/403",
+            "/stylesheets/**",
+            "/scripts/**",
             "/trails",
+            "/trails/**",
+            "/leaderboard",
+            "/registration",
+            "/registration/newregister",
+            "/403",
+            "/login",
+            "/login/error",
+            "/test"
+    };
+
+    public static final String[] USER_WHITELIST = {
             "/profile",
             "/scan",
-            "/login",
-            "/403",
-            "/logout"
+            "/login/success",
+            "/logout",
+            "/api/**"
     };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request -> request
                         .requestMatchers(ENDPOINTS_WHITELIST).permitAll()
+                        .requestMatchers(USER_WHITELIST).hasRole("USER")
                         .anyRequest().hasRole("ADMIN"))
 //                .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form

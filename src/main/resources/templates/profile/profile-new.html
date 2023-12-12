@@ -6,7 +6,7 @@
     <link th:replace="~{/fragments/header :: mainstyles}"/>
     <link rel="stylesheet" th:href="@{/stylesheets/dark-mode.css}"/>
     <script th:src="@{/scripts/dark-mode.js}" defer></script>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/profilecheckpointstyles.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/profilecheckpointstyles.css"/>
     <title>VZTA Trails</title>
 </head>
 <body>
@@ -22,26 +22,28 @@
         <p th:text="'Address 2: ' + ${profile.address2}"></p>
         <p th:text="'City: ' + ${profile.city}"></p>
         <p th:text="'Zip Code: ' + ${profile.zipCode}"></p>
+        <br>
 
 
-        <h2>Medals</h2>
+        <h2><strong>Medals</strong></h2>
         <ul class="medal-container" th:if="${not #lists.isEmpty(userMedals)}">
             <li th:each="medal : ${userMedals}">
-                <p th:text="'Medal: ' + ${medal.medalName}"></p>
+                <strong th:text="${medal.medalName}"></strong>
                 <p th:text="'Description: ' + ${medal.medalDescription}"></p>
             </li>
         </ul>
         <p th:if="${#lists.isEmpty(userMedals)}">No medals</p>
+        <br>
 
-        <h2>Started Trails</h2>
+        <h2><strong>Started Trails</strong></h2>
         <ul class="trail-container" th:if="${not #lists.isEmpty(startedTrails)}">
             <li th:each="trail : ${startedTrails}">
-                <p th:text="'Trail Name: ' + ${trail.name}"></p>
+                <h2 th:text="${trail.name}"></h2>
 
                 <div class="progress">
                     <div class="progress-bar" role="progressbar"
                          th:style="'width: ' + ${percentages.get(trail.id)} + '%'">
-<!--                         th:style="'width: calc((' + ${#lists.size(checkpointsByTrail[trail.name])} + '/' + ${#lists.size(trail.checkpoints)} + ') * 100) %'"-->
+                        <!--                         th:style="'width: calc((' + ${#lists.size(checkpointsByTrail[trail.name])} + '/' + ${#lists.size(trail.checkpoints)} + ') * 100) %'"-->
 
                         <span th:text="'Progress: ' + ${#lists.size(checkpointsIdsByTrail.get(trail.id))} + '/' + ${#lists.size(trail.checkpoints)}"></span>
                     </div>
@@ -50,12 +52,15 @@
                 <ul class="checkpoints-container">
                     <li th:each="checkpoint : ${trail.checkpoints}">
                         <div th:class="${#lists.contains(checkpointsIdsByTrail.get(trail.id), checkpoint.id)} ? 'checkpoint-card collected' : 'checkpoint-card not-collected'">
-                            <p th:text="'Checkpoint Name: ' + ${checkpoint.name}"></p>
-                            <p th:text="'Collected: ' + (${#lists.contains(checkpointsIdsByTrail.get(trail.id), checkpoint.id)} ? 'Yes' : 'No')"></p>
+                            <strong th:text="${checkpoint.name}"></strong>
+                            <p th:text="'Collected?: ' + (${#lists.contains(checkpointsIdsByTrail.get(trail.id), checkpoint.id)} ? 'Yes' : 'No')"></p>
                         </div>
                     </li>
                 </ul>
+                <br>
+                <br>
             </li>
+
         </ul>
         <p th:if="${#lists.isEmpty(startedTrails)}">No started trails</p>
 
