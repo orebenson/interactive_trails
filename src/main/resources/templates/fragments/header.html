@@ -34,7 +34,7 @@
         </li>
 
         <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-            <a th:href="@{/trails/add}">Add Trail</a>
+            <a th:href="@{/admin/trails/add}">Add Trail</a>
         </li>
 
     </ul>
