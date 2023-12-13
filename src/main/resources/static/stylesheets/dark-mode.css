@@ -16,6 +16,10 @@ body.dark-mode table {
     border: 0.3rem solid hsl(293, 6%, 30%);
 }
 
+body.dark-mode .trail-image-container {
+    border: 3px solid hsl(293, 6%, 30%);
+}
+
 body.dark-mode .page-container {
     border: 0.9rem solid hsl(293, 6%, 30%);
 }
