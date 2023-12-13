@@ -23,9 +23,13 @@ function isBetween(length, min, max) {
     }
 }
 function isEmailValid(email) {
-    //const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailPattern.test(email);
+}
+
+function isPasswordSecure(password) {
+    const passwordPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    return passwordPattern.test(password);
 }
 
 //Creating error and success functions
@@ -99,7 +103,10 @@ const checkPassword = function () {
 
     if (!isRequired(passwordValue)) {
         showError(passwordValueInput, 'Password cannot be empty');
-        return { valid: false, message: 'Password cannot be empty'};
+        return {valid: false, message: 'Password cannot be empty'};
+    } else if (!isPasswordSecure(passwordValue)) {
+        showError(passwordValueInput, 'Password must have at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+        return {valid: false, message: 'Password must have at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)'};
         } else {
         showSuccess(passwordValueInput)
         return { valid: true, message: '' };
