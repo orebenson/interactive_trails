@@ -57,7 +57,7 @@
                 <div th:each="checkpoint: ${trail.checkpoints}">
                     <li>
 <!--                        <div th:text="'id: ' + ${checkpoint.id}"></div>-->
-                        <strong><p th:text="${checkpoint.name}"></p></strong>
+                        <strong><p th:text="${checkpoint.name} + ', id: ' + ${checkpoint.id}"></p></strong>
                         <p th:text="${checkpoint.getDescription()}"></p>
                     </li>
                 </div>

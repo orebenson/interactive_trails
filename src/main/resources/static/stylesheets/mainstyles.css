@@ -14,8 +14,8 @@
     --page-background-colour: white;
     --text-colour: hsl(255, 5%, 20%);
     --highlight-colour: hsl(260, 10%, 75%);
-    --accent-colour: hsl(159, 35%, 50%);
-    --border-colour: hsl(286, 59%, 44%);
+    --accent-colour: #41669d;
+    --border-colour: hsl(278, 39%, 58%);
     --nav-height: 3rem;
 }
 

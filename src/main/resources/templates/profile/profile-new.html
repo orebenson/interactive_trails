@@ -52,7 +52,7 @@
                 <ul class="checkpoints-container">
                     <li th:each="checkpoint : ${trail.checkpoints}">
                         <div th:class="${#lists.contains(checkpointsIdsByTrail.get(trail.id), checkpoint.id)} ? 'checkpoint-card collected' : 'checkpoint-card not-collected'">
-                            <strong th:text="${checkpoint.name}"></strong>
+                            <strong th:text="${checkpoint.name} + ', id: ' + ${checkpoint.id}"></strong>
                             <p th:text="'Collected?: ' + (${#lists.contains(checkpointsIdsByTrail.get(trail.id), checkpoint.id)} ? 'Yes' : 'No')"></p>
                         </div>
                     </li>
