@@ -132,7 +132,8 @@ body {
 }
 
 .nav-button:hover {
-    color: var(--highlight-colour);
+    background-color: var(--highlight-colour);
+    color: var(--background-colour);
 }
 
 h1, h2, h3, p {
@@ -166,6 +167,7 @@ button {
 
 button:hover {
     background-color: var(--highlight-colour);
+    color: var(--background-colour);
 }
 
 a {
