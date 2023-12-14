@@ -70,6 +70,7 @@ public class ProfileController {
         mav.addObject("userMedals", userMedals);
         mav.addObject("percentages", percentages);
         mav.addObject("profile", profile);
+        mav.addObject("checkpointCount", profile.getCheckpoints().size());
         mav.addObject("startedTrails", startedTrails);
         mav.addObject("checkpointsIdsByTrail", checkpointIdsByTrail);
 
