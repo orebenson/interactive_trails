@@ -79,15 +79,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label th:for="${'X-Coordinate_' + index}" class="form-label">X-Coordinate:</label>
+                    <label th:for="${'Longitude_' + index}" class="form-label">Longitude:</label>
                     <input th:field="*{checkpoints[__${index}__].coordinates[0]}" type="text"
-                           th:id="${'X-Coordinate_' + index}" class="form-control">
+                           th:id="${'Longitude_' + index}" class="form-control">
                 </div>
 
                 <div class="mb-3">
-                    <label th:for="${'Y-Coordinate_' + index}" class="form-label">Y-Coordinate:</label>
+                    <label th:for="${'Latitude_' + index}" class="form-label">Latitude:</label>
                     <input th:field="*{checkpoints[__${index}__].coordinates[1]}" type="text"
-                           th:id="${'Y-Coordinate_' + index}" class="form-control">
+                           th:id="${'Latitude_' + index}" class="form-control">
                 </div>
 
                 <div class="mb-3">
