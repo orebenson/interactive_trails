@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link th:replace="~{/fragments/header :: bootstrap-css}"/>
-  <link th:replace="~{/fragments/header :: mainstyles}"/>
+  <link th:replace="~{fragments/header :: bootstrap-css}"/>
+  <link th:replace="~{fragments/header :: mainstyles}"/>
   <link rel="stylesheet" th:href="@{/stylesheets/dark-mode.css}"/>
   <link rel="stylesheet" th:href="@{/stylesheets/registrationformstyles.css}"/>
   <script th:src="@{/scripts/dark-mode.js}" defer></script>
@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="main-container">
-  <header th:replace="~{/fragments/header :: navbar}"></header>
+  <header th:replace="~{fragments/header :: navbar}"></header>
   <div class="page-container">
 
     <!--    page content goes here-->
@@ -50,7 +50,7 @@
           <input th:field="*{city}" type="text" class="form-control" id="inputCity" placeholder="City" autocomplete="off">
           <small id="cityError" class="error"></small>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-5">
           <label for="inputZip">Postcode</label>
           <input th:field="*{zipCode}" type="text" class="form-control" id="inputZip" placeholder="Postcode" autocomplete="off">
           <small id="zipCodeError" class="error"></small>

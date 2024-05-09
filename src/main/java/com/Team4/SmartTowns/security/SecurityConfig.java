@@ -17,6 +17,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+
+// Security Config for DevOps testing
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -66,8 +68,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request -> request
-                        .requestMatchers(ENDPOINTS_WHITELIST).permitAll()
-                        .requestMatchers(USER_WHITELIST).hasRole("USER")
+                        .antMatchers(ENDPOINTS_WHITELIST).permitAll()
+                        .antMatchers(USER_WHITELIST).hasRole("USER")
                         .anyRequest().hasRole("ADMIN"))
 //                .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form
@@ -84,5 +86,82 @@ public class SecurityConfig {
         return http.build();
     }
 
+
 }
+
+// Original security config
+// requires the below in the build.gradle plugins
+//
+// id 'org.springframework.boot' version '3.1.5'
+// id 'io.spring.dependency-management' version '1.1.3'
+//
+
+// @Configuration
+// @EnableWebSecurity
+// public class SecurityConfig {
+
+//     @Autowired
+//     private DataSource dataSource;
+
+//     @Bean
+//     public BCryptPasswordEncoder passwordEncoder() {
+//         return new BCryptPasswordEncoder();
+//     }
+
+//     @Bean
+//     UserDetailsService userDetailsService() {
+//         JdbcDaoImpl jdbcUserDetails = new JdbcDaoImpl();
+//         jdbcUserDetails.setDataSource(dataSource);
+//         jdbcUserDetails.setUsersByUsernameQuery("select username, password, enabled from user_table where username=?");
+//         jdbcUserDetails.setAuthoritiesByUsernameQuery("select username, authority from user_authorities where username=?");
+//         return jdbcUserDetails;
+//     }
+
+//     public static final String[] ENDPOINTS_WHITELIST = {
+//             // all users can see all pages currently, for testing purposes
+// //            "/**",
+//             //
+//             "/",
+//             "/stylesheets/**",
+//             "/scripts/**",
+//             "/trails",
+//             "/trails/**",
+//             "/leaderboard",
+//             "/registration",
+//             "/registration/newregister",
+//             "/403",
+//             "/login",
+//             "/login/**",
+//             "/test",
+//             "/api/**"
+//     };
+
+//     public static final String[] USER_WHITELIST = {
+//             "/profile",
+//             "/scan",
+//             "/logout",
+//     };
+
+//     @Bean
+//     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//         http.authorizeHttpRequests(request -> request
+//                         .requestMatchers(ENDPOINTS_WHITELIST).permitAll()
+//                         .requestMatchers(USER_WHITELIST).hasRole("USER")
+//                         .anyRequest().hasRole("ADMIN"))
+// //                .csrf(csrf -> csrf.disable())
+//                 .formLogin(form -> form
+//                         .loginPage("/login")
+//                         .permitAll()
+//                         .defaultSuccessUrl("/login/success")
+//                         .failureUrl("/login/error"))
+//                 .logout((l) -> l
+//                         .permitAll()
+//                         .logoutSuccessUrl("/"))
+//                 .exceptionHandling()
+//                 .accessDeniedPage("/403");
+
+//         return http.build();
+//     }
+
+// }
 

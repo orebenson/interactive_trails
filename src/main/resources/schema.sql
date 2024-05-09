@@ -1,3 +1,5 @@
+-- create database if not exists trailsdb;
+use trailsdb;
 drop table if exists user_table;
 drop table if exists user_checkpoints;
 drop table if exists checkpoint_table;

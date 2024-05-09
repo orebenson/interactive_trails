@@ -8,6 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class ErrorController {
     @GetMapping("/403")
     public ModelAndView error403() {
-        return new ModelAndView("/error/403");
+        return new ModelAndView("error/403");
     }
 }

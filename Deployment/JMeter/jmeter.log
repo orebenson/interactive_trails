@@ -1,0 +1,43 @@
+2024-05-08 16:00:36,437 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2024-05-08 16:00:36,553 INFO o.a.j.JMeter: Loading user properties from: C:\Program Files\JMeter\bin\user.properties
+2024-05-08 16:00:36,561 INFO o.a.j.JMeter: Loading system properties from: C:\Program Files\JMeter\bin\system.properties
+2024-05-08 16:00:36,572 INFO o.a.j.JMeter: Copyright (c) 1998-2022 The Apache Software Foundation
+2024-05-08 16:00:36,572 INFO o.a.j.JMeter: Version 5.5
+2024-05-08 16:00:36,572 INFO o.a.j.JMeter: java.version=17.0.6
+2024-05-08 16:00:36,572 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2024-05-08 16:00:36,572 INFO o.a.j.JMeter: os.name=Windows 11
+2024-05-08 16:00:36,573 INFO o.a.j.JMeter: os.arch=amd64
+2024-05-08 16:00:36,573 INFO o.a.j.JMeter: os.version=10.0
+2024-05-08 16:00:36,573 INFO o.a.j.JMeter: file.encoding=Cp1252
+2024-05-08 16:00:36,573 INFO o.a.j.JMeter: java.awt.headless=null
+2024-05-08 16:00:36,573 INFO o.a.j.JMeter: Max memory     =1073741824
+2024-05-08 16:00:36,573 INFO o.a.j.JMeter: Available Processors =12
+2024-05-08 16:00:36,584 INFO o.a.j.JMeter: Default Locale=English (EN)
+2024-05-08 16:00:36,585 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2024-05-08 16:00:36,585 INFO o.a.j.JMeter: JMeterHome=C:\Program Files\JMeter
+2024-05-08 16:00:36,585 INFO o.a.j.JMeter: user.dir  =C:\Users\c23097744\OneDrive - Cardiff University\Ore_Uni\Sem 2\DevOps\DupeClientProject\team-4-smart-towns\Deployment\JMeter
+2024-05-08 16:00:36,586 INFO o.a.j.JMeter: PWD       =C:\Users\c23097744\OneDrive - Cardiff University\Ore_Uni\Sem 2\DevOps\DupeClientProject\team-4-smart-towns\Deployment\JMeter
+2024-05-08 16:00:36,587 INFO o.a.j.JMeter: IP: 192.168.4.105 Name: DSA10F60A815E3E FullName: DSA10F60A815E3E
+2024-05-08 16:00:36,602 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2024-05-08 16:00:36,841 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2024-05-08 16:00:46,326 INFO o.a.j.s.FileServer: Default base='C:\Users\c23097744\OneDrive - Cardiff University\Ore_Uni\Sem 2\DevOps\DupeClientProject\team-4-smart-towns\Deployment\JMeter'
+2024-05-08 16:00:46,328 INFO o.a.j.g.a.Load: Loading file: C:\Users\c23097744\OneDrive - Cardiff University\Ore_Uni\Sem 2\DevOps\DupeClientProject\team-4-smart-towns\Deployment\JMeter\Server_Test_Plan.jmx
+2024-05-08 16:00:46,329 INFO o.a.j.s.FileServer: Set new base='C:\Users\c23097744\OneDrive - Cardiff University\Ore_Uni\Sem 2\DevOps\DupeClientProject\team-4-smart-towns\Deployment\JMeter'
+2024-05-08 16:00:46,432 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2024-05-08 16:00:46,451 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2024-05-08 16:00:46,453 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2024-05-08 16:00:46,454 INFO o.a.j.s.SaveService: Loading file: C:\Users\c23097744\OneDrive - Cardiff University\Ore_Uni\Sem 2\DevOps\DupeClientProject\team-4-smart-towns\Deployment\JMeter\Server_Test_Plan.jmx
+2024-05-08 16:00:46,478 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2024-05-08 16:00:46,480 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-05-08 16:00:46,480 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-05-08 16:00:46,480 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-05-08 16:00:46,480 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2024-05-08 16:00:46,480 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2024-05-08 16:00:46,480 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2024-05-08 16:00:46,666 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2024-05-08 16:00:46,666 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2024-05-08 16:00:46,666 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2024-05-08 16:00:46,666 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2024-05-08 16:00:46,774 INFO o.a.j.v.ViewResultsFullVisualizer: Add JavaFX to your Java installation if you want to use renderer: org.apache.jmeter.visualizers.RenderInBrowser
+2024-05-08 16:00:46,888 INFO o.a.j.v.ViewResultsFullVisualizer: Add JavaFX to your Java installation if you want to use renderer: org.apache.jmeter.visualizers.RenderInBrowser
+2024-05-08 16:00:46,961 INFO o.a.j.s.FileServer: Set new base='C:\Users\c23097744\OneDrive - Cardiff University\Ore_Uni\Sem 2\DevOps\DupeClientProject\team-4-smart-towns\Deployment\JMeter'

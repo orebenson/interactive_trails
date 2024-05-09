@@ -1,0 +1,32 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1714342500673,515,Get Homepage,200,,Thread Group (Normal User) 2-1,text,true,,2926,440,1,2,http://localhost:8080/login,159,0,12
+1714342500673,161,Get Homepage-0,302,,Thread Group (Normal User) 2-1,,true,,417,193,1,2,http://localhost:8080/home,159,0,12
+1714342500837,351,Get Homepage-1,200,,Thread Group (Normal User) 2-1,text,true,,2509,247,1,2,http://localhost:8080/login,350,0,0
+1714342500673,515,Get Homepage,200,,Thread Group (Admin User) 1-1,text,true,,2926,440,1,2,http://localhost:8080/login,159,0,12
+1714342500673,161,Get Homepage-0,302,,Thread Group (Admin User) 1-1,,true,,417,193,1,2,http://localhost:8080/home,159,0,12
+1714342500837,351,Get Homepage-1,200,,Thread Group (Admin User) 1-1,text,true,,2509,247,1,2,http://localhost:8080/login,350,0,0
+1714342501196,6,Get Login Page,200,,Thread Group (Admin User) 1-1,text,true,,2509,247,1,2,http://localhost:8080/login,6,0,0
+1714342501197,45,Get Trails Page,200,,Thread Group (Normal User) 2-1,text,true,,2818,248,1,2,http://localhost:8080/trails,44,0,0
+1714342501242,22,Get Leaderboard Page,200,,Thread Group (Normal User) 2-1,text,true,,2751,253,1,2,http://localhost:8080/leaderboard,22,0,0
+1714342501265,36,Get Register Page,200,,Thread Group (Normal User) 2-1,text,true,,4169,254,1,2,http://localhost:8080/registration,36,0,0
+1714342501303,119,Post Register New User,200,,Thread Group (Normal User) 2-1,text,true,,2737,782,1,2,http://localhost:8080/,102,0,0
+1714342501303,102,Post Register New User-0,302,,Thread Group (Normal User) 2-1,,true,,362,540,1,2,http://localhost:8080/registration/newregister,102,0,0
+1714342501405,17,Post Register New User-1,200,,Thread Group (Normal User) 2-1,text,true,,2375,242,1,2,http://localhost:8080/,17,0,0
+1714342501425,9,Get Login Page,200,,Thread Group (Normal User) 2-1,text,true,,2509,247,1,2,http://localhost:8080/login,8,0,0
+1714342501435,80,Post Login New User,200,,Thread Group (Normal User) 2-1,text,true,,2584,247,1,2,http://localhost:8080/login,80,0,0
+1714342501517,11,Get New User Profile,200,,Thread Group (Normal User) 2-1,text,true,,2851,496,1,2,http://localhost:8080/login,4,0,0
+1714342501517,4,Get New User Profile-0,302,,Thread Group (Normal User) 2-1,,true,,342,249,1,2,http://localhost:8080/profile,4,0,0
+1714342501522,6,Get New User Profile-1,200,,Thread Group (Normal User) 2-1,text,true,,2509,247,1,2,http://localhost:8080/login,6,0,0
+1714342501530,9,Get Scan QR Page,200,,Thread Group (Normal User) 2-1,text,true,,2851,493,1,2,http://localhost:8080/login,3,0,0
+1714342501530,3,Get Scan QR Page-0,302,,Thread Group (Normal User) 2-1,,true,,342,246,1,2,http://localhost:8080/scan,3,0,0
+1714342501534,5,Get Scan QR Page-1,200,,Thread Group (Normal User) 2-1,text,true,,2509,247,1,2,http://localhost:8080/login,5,0,0
+1714342501541,10,Post Logout,200,,Thread Group (Normal User) 2-1,text,true,,2712,617,1,2,http://localhost:8080/,3,0,0
+1714342501541,3,Post Logout-0,302,,Thread Group (Normal User) 2-1,,true,,337,375,1,2,http://localhost:8080/logout,3,0,0
+1714342501544,7,Post Logout-1,200,,Thread Group (Normal User) 2-1,text,true,,2375,242,1,2,http://localhost:8080/,7,0,0
+1714342501204,379,Post Login Admin,200,,Thread Group (Admin User) 1-1,text,true,,2584,247,1,1,http://localhost:8080/login,379,0,0
+1714342501584,6,Get Admin Add Trail,200,,Thread Group (Admin User) 1-1,text,true,,2851,505,1,1,http://localhost:8080/login,2,0,0
+1714342501584,2,Get Admin Add Trail-0,302,,Thread Group (Admin User) 1-1,,true,,342,258,1,1,http://localhost:8080/admin/trails/add,2,0,0
+1714342501586,4,Get Admin Add Trail-1,200,,Thread Group (Admin User) 1-1,text,true,,2509,247,1,1,http://localhost:8080/login,4,0,0
+1714342501592,10,Post Logout,200,,Thread Group (Admin User) 1-1,text,true,,2712,617,1,1,http://localhost:8080/,3,0,0
+1714342501592,3,Post Logout-0,302,,Thread Group (Admin User) 1-1,,true,,337,375,1,1,http://localhost:8080/logout,3,0,0
+1714342501595,7,Post Logout-1,200,,Thread Group (Admin User) 1-1,text,true,,2375,242,1,1,http://localhost:8080/,6,0,0

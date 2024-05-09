@@ -8,7 +8,7 @@ To view diagram, install PlantUML plugin for IntelliJ/VSCode
 package Database <<Database>>{
 
     entity Checkpoint_Table {
-        checkpoint_ID
+        checkpoint_I
         --
         trail_ID
         landmark_ID

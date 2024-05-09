@@ -1,3 +1,5 @@
+-- create database if not exists trailsdb;
+use trailsdb;
 insert into roles_table (role_id, name)
 values
     (1, 'ADMIN'),

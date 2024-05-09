@@ -1,0 +1,182 @@
+
+plugins:
+- jacoco
+- gitlab
+- 'warnings next generation'
+- performance
+
+
+
+
+################################# Smart Towns - Run JMeter Performance Tests
+
+#!/usr/bin/bash
+echo "############ RUNNING BUILD ############"
+pwd
+
+if [ -d JMeter ]; then
+    cd JMeter
+    rm *.*
+    cd ../
+fi
+
+cp -r "/var/lib/jenkins/workspace/Smart Towns - Run JUnit + WebDriver + Checkstyle + Selenium Tests/Deployment/JMeter" ./
+
+# get the ip from the terraform deployment
+SERVER_IP=$(cat "/var/lib/jenkins/workspace/Smart Towns - Terraform pull and run Docker image/Terraform_Docker/floating_ip.txt")
+
+sleep 300 #Takes about 5 minutes for the server to be up and running
+LIVE_SITE=$(curl -s $SERVER_IP:8080)
+if [[ $LIVE_SITE == *"VZTA"* ]]; then
+    echo "Main site running"
+else
+    echo "Main site site not running"
+    echo "."
+    echo "."
+    exit 1
+fi
+
+OUTPUT_FILES=results/server_jmeter_results
+cd JMeter
+mkdir results
+/opt/jmeter/apache-jmeter-5.5/bin/jmeter -Jserver_ip=$SERVER_IP -Joutput_file=$OUTPUT_FILES -n -t Server_Test_Plan.jmx -l results/tmp.log
+
+
+
+
+################################# Smart Towns - Terraform pull and run Docker image:
+
+--- SET UP SECR4ET TEXT IN JENKINS AND USE IN BUILD c23097744_pass
+
+#!/usr/bin/bash
+echo "############ RUNNING BUILD ############"
+pwd
+
+export OS_AUTH_URL=https://cscloud.cf.ac.uk:5000
+export OS_PROJECT_ID=bfa4a12c0f5e48b0911fbb60f85d542f
+export OS_PROJECT_NAME="c23097744"
+export OS_USER_DOMAIN_NAME="cardiff.ac.uk"
+if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
+export OS_PROJECT_DOMAIN_ID="3693afdd0603423a9e8984fd32df7a0c"
+if [ -z "$OS_PROJECT_DOMAIN_ID" ]; then unset OS_PROJECT_DOMAIN_ID; fi
+unset OS_TENANT_ID
+unset OS_TENANT_NAME
+export OS_USERNAME="c23097744"
+export OS_PASSWORD=$c23097744_pass
+export OS_REGION_NAME="RegionOne"
+if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+
+if [ -d Terraform_Docker ]; then
+    cd Terraform_Docker
+    /usr/local/bin/terraform destroy -auto-approve
+    rm *.*
+    cd ../
+fi
+
+cp -r "/var/lib/jenkins/workspace/Smart Towns - Run JUnit + WebDriver + Checkstyle + Selenium Tests/Deployment/Terraform_Docker" ./
+cd Terraform_Docker
+/usr/local/bin/terraform init
+/usr/local/bin/terraform plan
+/usr/local/bin/terraform apply -auto-approve
+
+
+
+
+################################# Smart Towns - Create and push Docker image:
+
+--- SET UP SECR4ET TEXT IN JENKINS AND USE IN BUILD docker_pass
+
+#!/usr/bin/bash
+echo "############ RUNNING BUILD ############"
+pwd
+
+# get jenkins build number
+BUILD_NUMBER=${BUILD_NUMBER}
+
+# get latest commit hash
+GIT_COMMIT=$(git --git-dir=/var/lib/jenkins/workspace/"Smart Towns - Run JUnit + WebDriver + Checkstyle + Selenium Tests"/.git rev-parse --short HEAD)
+
+# combine jenkins build number and git commit to make build (need build number in order to sort by latest image later)
+VERSION="${BUILD_NUMBER}_${GIT_COMMIT}"
+echo "BUILDING IMAGE VERSION $VERSION with format: [jenkins build no.]_[git commit hash]"
+
+# copy all the files except the .git repo
+rsync -av --exclude='.git' "/var/lib/jenkins/workspace/Smart Towns - Run JUnit + WebDriver + Checkstyle + Selenium Tests/." ./
+#cp -r "/var/lib/jenkins/workspace/Smart Towns - Run Tests/." ./
+
+/opt/gradle/gradle-8.0.2/bin/gradle clean bootjar
+
+# Run the docker file and create the image
+docker build -t smart-towns:$VERSION .
+
+# Push the image to docker hub
+docker login -u orebenson -p $docker_pass
+docker tag smart-towns:$VERSION orebenson/smart-towns:$VERSION
+docker push orebenson/smart-towns:$VERSION
+
+
+
+
+################################# Smart Towns - Run JUnit + WebDriver + Checkstyle + Selenium Tests
+
+GITLAB HOOK: 
+- 79b5b8b142e85b60a44a9f2eaa9d304f
+- http://10.72.100.46:8081/project/Smart%20Towns%20-%20Run%20JUnit%20+%20WebDriver%20+%20Checkstyle%20+%20Selenium%20Tests
+
+#!/usr/bin/bash
+echo "############ RUNNING BUILD ############"
+pwd
+
+mysql -u root -pcomsc < src/main/resources/schema.sql
+mysql -u root -pcomsc < src/main/resources/data.sql
+/opt/gradle/gradle-8.0.2/bin/gradle clean
+/opt/gradle/gradle-8.0.2/bin/gradle build
+/opt/gradle/gradle-8.0.2/bin/gradle jacocoTestReport
+/opt/gradle/gradle-8.0.2/bin/gradle bootjar
+
+# generate selenium report using script
+bash ./Deployment/Selenium/generate_selenium_report.sh
+# report at /var/lib/jenkins/workspace/"Smart Towns - Run JUnit + WebDriver + Checkstyle + Selenium Tests"/Deployment/Selenium/selenium_results/selenium_report.html
+
+
+
+
+################################# Smart Towns - Terraform with BootRun
+
+--- SET UP SECR4ET TEXT IN JENKINS AND USE IN BUILD c23097744_pass
+
+#!/usr/bin/bash
+echo "############ RUNNING BUILD ############"
+pwd
+
+export OS_AUTH_URL=https://cscloud.cf.ac.uk:5000
+export OS_PROJECT_ID=bfa4a12c0f5e48b0911fbb60f85d542f
+export OS_PROJECT_NAME="c23097744"
+export OS_USER_DOMAIN_NAME="cardiff.ac.uk"
+if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
+export OS_PROJECT_DOMAIN_ID="3693afdd0603423a9e8984fd32df7a0c"
+if [ -z "$OS_PROJECT_DOMAIN_ID" ]; then unset OS_PROJECT_DOMAIN_ID; fi
+unset OS_TENANT_ID
+unset OS_TENANT_NAME
+export OS_USERNAME="c23097744"
+export OS_PASSWORD=$c23097744_pass
+export OS_REGION_NAME="RegionOne"
+if [ -z "$OS_REGION_NAME" ]; then unset OS_REGION_NAME; fi
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+
+if [ -d Terraform ]; then
+    cd Terraform
+    /usr/local/bin/terraform destroy -auto-approve
+    rm *.*
+    cd ../
+fi
+
+cp -r "/var/lib/jenkins/workspace/Smart Towns - Run JUnit + WebDriver + Checkstyle + Selenium Tests/Deployment/Terraform" ./
+cd Terraform
+/usr/local/bin/terraform init
+/usr/local/bin/terraform plan
+/usr/local/bin/terraform apply -auto-approve
+
