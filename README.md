@@ -1,6 +1,6 @@
 # Interactive Trails Project
 
-Welcome to the Interactive Trails Project! This application enhances the experience of exploring towns and supporting local businesses through interactive and engaging trails.
+Welcome to the Interactive Trails Project. This application enhances the experience of exploring towns and supporting local businesses through interactive and engaging trails.
 
 ## Features
 
@@ -25,5 +25,4 @@ My deployment pipeline ensures a robust CI/CD process, using the following steps
 5. **Performance Testing**: Conduct JMeter performance tests on the live website.
 
 ## Collaboration
-
 This project was developed for VZTA. For more information, visit their [website](https://www.vzta.com/).
