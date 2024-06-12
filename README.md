@@ -26,3 +26,9 @@ My deployment pipeline ensures a robust CI/CD process, using the following steps
 
 ## Collaboration
 This project was developed for VZTA. For more information, visit their [website](https://www.vzta.com/).
+
+## Technologies
+- **Java**: 17
+- **Spring Boot with Gradle**: 2.7.0
+- **Docker**
+- **Terraform**
